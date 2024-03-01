@@ -1,4 +1,10 @@
-<x-l-layout::form :action="route('login')">
+<x-l-layout::form :action="route('login')" >
+    <x-slot:title>
+        Вход
+    </x-slot:title>
+    <x-slot:header_info>
+        Вход в приложение
+    </x-slot:header_info>
     <x-l::form-input-error :messages="$errors->get('loginEmail')"/>
     <x-l::form-input name="loginEmail" type="text" placeholder="Email"/>
     <x-l::form-input-error :messages="$errors->get('loginPassword')"/>
@@ -9,4 +15,10 @@
     <x-l::form-btn>
         Вход
     </x-l::form-btn>
+    <a href="{{ route('register') }}" class="formFormA">
+        Регистрация
+    </a>
+    <a href="" class="formFormA">
+        Востановить пароль
+    </a>
 </x-l-layout::form>

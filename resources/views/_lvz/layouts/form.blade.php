@@ -1,9 +1,9 @@
 <x-l-layout::main showAuth="no">
     <x-slot:title>
-        Вход
+        {{ $title }}
     </x-slot:title>
     <x-slot:header_info>
-        Вход в приложение
+        {{ $header_info }}
     </x-slot:header_info>
     <style>
         .formForm {

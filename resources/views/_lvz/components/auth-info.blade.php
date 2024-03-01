@@ -11,13 +11,13 @@
     <div class="container typicalContainer">
         <p class="authP">
             ID: {{ Auth::user()->id }}
-            Name: {{ Auth::user()->name }}
+            Имя: {{ Auth::user()->name }}
         </p>
         <a href="{{ route('logout') }}" class="authA">
-            Disconnect!
+            Выйти
         </a>
         <a href="{{ route('profile.edit') }}" class="authA">
-            Edit!
+            Редактировать
         </a>
     </div>
 </section>
