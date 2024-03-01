@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);
+
+/** {
+	border: 1px solid red;
+}
+*/
+
+div, p, input, button, form, span, a, ul, li, pre, * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, button {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+body {
+    background: grey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 17px;
+}
+
+button {
+    display: block;
+    background: yellow;
+    font-weight: bold;
+    text-align: center;
+    padding: 7px 0;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 1s;
+}
+
+button:hover {
+    background: palegreen;
+    transition-duration: 1s;
+}
+
+input, textarea, select {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 7px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.headerWrap {
+    padding: 0 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    color: white;
+}
+
+.headerWrapLinkImg {
+    height: 50px;
+    background: white;
+}
+
+section {
+    margin: 25px auto;
+}
+
+.typicalContainer {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
