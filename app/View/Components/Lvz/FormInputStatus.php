@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Lvz\Layouts;
+namespace App\View\Components\Lvz;
 
 use Illuminate\View\Component;
 
-class Form extends Component
+class FormInputStatus extends Component
 {
     /**
      * Create a new component instance.
@@ -12,11 +12,10 @@ class Form extends Component
      * @return void
      */
     public function __construct(
-        public string $action,
-        public string $method = 'POST',
+        public $message
     )
     {
-        //
+
     }
 
     /**
@@ -26,6 +25,6 @@ class Form extends Component
      */
     public function render()
     {
-        return view('_lvz.layouts.form');
+        return view('_lvz.components.form-input-status');
     }
 }

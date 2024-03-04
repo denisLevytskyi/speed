@@ -18,7 +18,7 @@
     <a href="{{ route('register') }}" class="formFormA">
         Регистрация
     </a>
-    <a href="" class="formFormA">
-        Востановить пароль
+    <a href="{{ route('password.request') }}" class="formFormA">
+        Восстановить пароль
     </a>
 </x-l-layout::form>

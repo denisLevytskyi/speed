@@ -1,12 +1,3 @@
-<style>
-    .auth .container * {
-        margin-bottom: 10px;
-    }
-
-    .authA {
-        color: blue;
-    }
-</style>
 <section class="auth">
     <div class="container typicalContainer">
         <p class="authP">

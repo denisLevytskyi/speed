@@ -1,13 +1,9 @@
 <style>
-    .formFormRem {
-        margin: auto auto 10px;
-    }
-
-    .formFormRem * {
+    .formFormBox * {
         display: inline;
     }
 </style>
-<div {{ $attributes }} class="formFormRem">
-    <input type="checkbox" class="formFormRemCheck">
+<div {{ $attributes }} class="formFormBox">
+    <input type="checkbox" class="formFormBoxCheck">
     <p>{{ $slot }}</p>
 </div>
