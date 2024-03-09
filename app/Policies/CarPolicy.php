@@ -2,9 +2,11 @@
 
 namespace App\Policies;
 
+use App\Http\Requests\StoreCarRequest;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use phpDocumentor\Reflection\Types\False_;
 
 class CarPolicy
 {
@@ -39,9 +41,15 @@ class CarPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create (User $user, StoreCarRequest $request)
     {
-        //
+        $roles = $user->roles;
+        foreach ($roles as $role) {
+            if ($role->role != 'GUEST' and $user->id == $request->CarCreateUserId) {
+                return TRUE;
+            }
+        }
+        return FALSE;
     }
 
     /**
@@ -53,7 +61,13 @@ class CarPolicy
      */
     public function update(User $user, Car $car)
     {
-        //
+        $roles = $user->roles;
+        foreach ($roles as $role) {
+            if ($role->role == 'ADMIN' or $user->id == $car->user_id) {
+                return TRUE;
+            }
+        }
+        return FALSE;
     }
 
     /**

@@ -72,7 +72,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function getRole (): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+    public function roles () {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+    public function getRolesArray () {
+        $result = $this->roles;
+        $roles = [];
+        foreach ($result as $value) {
+            $roles[] = $value->role;
+        }
+        return $roles;
     }
 }

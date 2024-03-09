@@ -13,7 +13,7 @@ class UpdateCarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'CarEditUserId' => 'required',
+            'CarEditManufacturer' => 'required',
+            'CarEditModel' => 'required',
+            'CarEditNumber' => ['required', 'min:4', 'max:10'],
+            'CarEditColor' => ['required', 'min:4', 'max:20'],
+            'CarEditFuel' => 'required',
+            'CarEditYear' => ['required', 'numeric']
         ];
     }
 }

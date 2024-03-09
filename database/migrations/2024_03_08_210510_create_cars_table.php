@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users', 'id')->noActionOnDelete()->cascadeOnUpdate();
             $table->string('manufacturer')->nullable();
+            $table->string('model')->nullable();
             $table->string('number')->nullable();
             $table->string('color')->nullable();
             $table->string('fuel')->nullable();
