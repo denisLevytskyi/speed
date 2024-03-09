@@ -6,11 +6,6 @@
         Добавление автомобиля
     </x-slot:header_info>
     <p class="formFormP">
-        ID Пользователя
-    </p>
-    <x-l::form-input-error :messages="$errors->get('CarCreateUserId')"/>
-    <x-l::form-input name="CarCreateUserId" type="text" :value="Auth::user()->id" readonly/>
-    <p class="formFormP">
         Производитель
     </p>
     <x-l::form-input-error :messages="$errors->get('CarCreateManufacturer')"/>

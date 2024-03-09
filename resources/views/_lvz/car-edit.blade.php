@@ -6,11 +6,9 @@
     <x-slot:header_info>
         Просмотр и редактирование автомобиля
     </x-slot:header_info>
-    <p class="formFormP">
-        ID Пользователя
-    </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditUserId')"/>
-    <x-l::form-input name="CarEditUserId" type="text" :value="$car->user_id" readonly/>
+    <pre class="productFormP">Запись №: {{ $car->id }}</pre>
+    <pre class="productFormP">Добавлена пользователем: {{ $car->user_id }}</pre>
+    <br>
     <p class="formFormP">
         Производитель
     </p>

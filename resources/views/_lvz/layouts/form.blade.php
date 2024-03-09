@@ -52,6 +52,7 @@
             <form action="{{ $action }}" method="{{ $method }}" class="formForm">
                 @csrf
                 <x-l::form-input-status :message="session('status')"/>
+                <x-l::form-input-error :messages="$errors->get('status')"/>
                 {{ $slot }}
             </form>
         </div>

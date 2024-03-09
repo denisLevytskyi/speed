@@ -30,13 +30,13 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        if ($request->user()->cannot('create', [Car::class, $request])) {
+        if ($request->user()->cannot('create', Car::class)) {
             return back()->withErrors([
-                'CarCreateUserId' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
         $data = [
-            'user_id' => $request->CarCreateUserId,
+            'user_id' => $request->user()->id,
             'manufacturer' => $request->CarCreateManufacturer,
             'model' => $request->CarCreateModel,
             'number' => $request->CarCreateNumber,
@@ -48,7 +48,7 @@ class CarController extends Controller
             return redirect(route('app.car.index'));
         } else {
             return back()->withErrors([
-                'CarCreateUserId' => 'Ошибка внесения данных в БД'
+                'status' => 'Ошибка внесения данных в БД'
             ]);
         }
     }
@@ -68,7 +68,6 @@ class CarController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
      */
     public function edit(Car $car)
     {
@@ -85,11 +84,10 @@ class CarController extends Controller
     {
         if ($request->user()->cannot('update', $car)) {
             return back()->withErrors([
-                'CarEditUserId' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
         $data = [
-//            'user_id' => $request->CarEditUserId,
             'manufacturer' => $request->CarEditManufacturer,
             'model' => $request->CarEditModel,
             'number' => $request->CarEditNumber,
@@ -99,10 +97,10 @@ class CarController extends Controller
         ];
         $result = $car->update($data);
         if ($result) {
-            return back()->with(['status' => 'Обновлено!']);
+            return back()->with(['status' => 'Обновлено']);
         } else {
             return back()->withErrors([
-                'CarEditUserId' => 'Ошибка внесения данных в БД'
+                'status' => 'Ошибка внесения данных в БД'
             ]);
         }
     }

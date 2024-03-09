@@ -41,11 +41,11 @@ class CarPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create (User $user, StoreCarRequest $request)
+    public function create (User $user)
     {
-        $roles = $user->roles;
+        $roles = $user->getRolesArray();
         foreach ($roles as $role) {
-            if ($role->role != 'GUEST' and $user->id == $request->CarCreateUserId) {
+            if ($role != 'GUEST') {
                 return TRUE;
             }
         }
