@@ -46,7 +46,10 @@
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
-    <a href="{{ route('app.car.index') }}" class="formFormA">
+    <a href="" class="formFormA">
         Назад
     </a>
+    <x-l::form-delete :action="route('app.car.destroy', ['car' => $car->id])">
+        Удалить
+    </x-l::form-delete>
 </x-l-layout::form>

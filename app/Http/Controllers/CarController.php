@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
-use phpDocumentor\Reflection\Types\Self_;
+use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::paginate(10);
         return view('_lvz/car-index', ['cars' => $cars]);
     }
 
@@ -45,7 +45,7 @@ class CarController extends Controller
             'year' => $request->CarCreateYear
         ];
         if (Car::create($data)) {
-            return redirect(route('app.car.index'));
+            return redirect(route('app.car.index'))->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
@@ -108,11 +108,22 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
+
      */
-    public function destroy(Car $car)
+    public function destroy(Request $request,Car $car)
     {
-        //
+        if ($request->user()->cannot('delete', $car)) {
+            return back()->withErrors([
+                'status' => 'Вы не можете выполнить данное действие!'
+            ]);
+        }
+        $result = $car->delete();
+        if ($result) {
+            return redirect(route('app.car.index'))->with(['status' => 'Запись успешно удалена']);
+        } else {
+            return back()->withErrors([
+                'status' => 'Ошибка внесения данных в БД'
+            ]);
+        }
     }
 }

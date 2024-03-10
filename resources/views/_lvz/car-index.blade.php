@@ -17,6 +17,7 @@
             color: black;
         }
     </style>
+    <x-l::status :message="session('status')"/>
     <section class="list">
         <div class="container typicalContainer">
             <a href="{{ route('app.car.create') }}" class="listA">
@@ -30,6 +31,7 @@
                         </a>
                     </div>
                 @endforeach
+                {{ $cars->onEachSide(1)->links() }}
             </div>
         </div>
     </section>

@@ -79,7 +79,13 @@ class CarPolicy
      */
     public function delete(User $user, Car $car)
     {
-        //
+        $roles = $user->roles;
+        foreach ($roles as $role) {
+            if ($role->role == 'ADMIN' or $user->id == $car->user_id) {
+                return TRUE;
+            }
+        }
+        return FALSE;
     }
 
     /**
