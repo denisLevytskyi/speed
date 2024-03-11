@@ -76,12 +76,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
 
-    public function getRolesArray () {
-        $result = $this->roles;
-        $roles = [];
-        foreach ($result as $value) {
-            $roles[] = $value->role;
-        }
-        return $roles;
+    public function isAdministrator () {
+        return$this->roles()->where('role', '=', 'ADMIN')->exists();
+    }
+
+    public function isUser () {
+        return$this->roles()->where('role', '=', 'USER')->exists();
+    }
+
+    public function isGuest () {
+        return$this->roles()->where('role', '=', 'GUEST')->exists();
     }
 }

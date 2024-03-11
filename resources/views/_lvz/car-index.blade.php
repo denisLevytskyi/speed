@@ -7,7 +7,7 @@
     </x-slot:header_info>
     <style>
         .listWrapItem {
-            background: darkgrey;
+            background: lightgrey;
             border-radius: 2px;
             margin: 5px 0;
             padding: 5px;
@@ -17,7 +17,6 @@
             color: black;
         }
     </style>
-    <x-l::status :message="session('status')"/>
     <section class="list">
         <div class="container typicalContainer">
             <a href="{{ route('app.car.create') }}" class="listA">

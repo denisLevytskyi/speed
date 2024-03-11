@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Lvz\Layouts;
+namespace App\View\Components\Lvz;
 
 use Illuminate\View\Component;
 
-class Main extends Component
+class StatusError extends Component
 {
     /**
      * Create a new component instance.
@@ -12,8 +12,7 @@ class Main extends Component
      * @return void
      */
     public function __construct(
-        public string $showAuth = 'show',
-        public string $showStatus = 'show'
+        public $messages
     )
     {
         //
@@ -26,6 +25,6 @@ class Main extends Component
      */
     public function render()
     {
-        return view('_lvz.layouts.main');
+        return view('_lvz.components.status-error');
     }
 }

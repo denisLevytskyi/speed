@@ -43,13 +43,11 @@ class CarPolicy
      */
     public function create (User $user)
     {
-        $roles = $user->getRolesArray();
-        foreach ($roles as $role) {
-            if ($role != 'GUEST') {
-                return TRUE;
-            }
+        if ($user->isGuest()) {
+            return FALSE;
+        } else {
+            return TRUE;
         }
-        return FALSE;
     }
 
     /**
@@ -59,15 +57,13 @@ class CarPolicy
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Car $car)
+    public function update (User $user, Car $car)
     {
-        $roles = $user->roles;
-        foreach ($roles as $role) {
-            if ($role->role == 'ADMIN' or $user->id == $car->user_id) {
-                return TRUE;
-            }
+        if ($user->isAdministrator() or $user->id == $car->user_id) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
-        return FALSE;
     }
 
     /**
@@ -77,15 +73,13 @@ class CarPolicy
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Car $car)
+    public function delete (User $user, Car $car)
     {
-        $roles = $user->roles;
-        foreach ($roles as $role) {
-            if ($role->role == 'ADMIN' or $user->id == $car->user_id) {
-                return TRUE;
-            }
+        if ($user->isAdministrator() or $user->id == $car->user_id) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
-        return FALSE;
     }
 
     /**

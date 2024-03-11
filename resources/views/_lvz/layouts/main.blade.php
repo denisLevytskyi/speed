@@ -28,6 +28,10 @@
         @if ($showAuth == 'show')
             <x-l::auth-info/>
         @endif
+        @if ($showStatus == 'show')
+            <x-l::status :message="session('status')"/>
+            <x-l::status-error :messages="$errors->get('status')"/>
+        @endif
         {{ $slot }}
     </body>
 </html>

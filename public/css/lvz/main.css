@@ -39,11 +39,13 @@ a {
 }
 
 button {
-    display: block;
-    background: yellow;
+    width: fit-content;
+    display: inline;
+    background: #95F3FF;
     font-weight: bold;
     text-align: center;
-    padding: 7px 0;
+    padding: 5px 20px;
+    margin: 0 0 0 auto;
     border: 1px solid grey;
     border-radius: 5px;
     cursor: pointer;
@@ -75,6 +77,12 @@ section {
     margin: 0 auto;
 }
 
+.typicalContainer {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .headerWrap {
     padding: 0 5px;
     display: flex;
@@ -90,8 +98,14 @@ section {
     background: white;
 }
 
-.typicalContainer {
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
+.status .container {
+    background: palegreen;
+    text-align: center;
+    color: white;
+}
+
+.statusError .container {
+    background: #d32121;
+    text-align: center;
+    color: white;
 }

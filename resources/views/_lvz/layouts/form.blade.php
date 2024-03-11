@@ -1,4 +1,4 @@
-<x-l-layout::main showAuth="no">
+<x-l-layout::main showAuth="no" showStatus="no">
     <x-slot:title>
         {{ $title }}
     </x-slot:title>
@@ -12,7 +12,7 @@
             max-width: 400px;
             margin: auto;
             background: white;
-            padding: 10px;
+            padding: 5px;
             border-radius: 5px;
         }
 
@@ -26,7 +26,7 @@
         }
 
         .formFormStatus {
-            background: green;
+            background: palegreen;
             text-align: center;
             color: white;
             margin-bottom: 2px;
@@ -42,6 +42,10 @@
         .formFormP {
             margin-bottom: 5px;
             text-align: justify;
+        }
+
+        .formFormBox * {
+            display: inline;
         }
     </style>
     @isset($before)
