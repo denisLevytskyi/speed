@@ -4,7 +4,7 @@
         Обновление автомобиля
     </x-slot:title>
     <x-slot:header_info>
-        Создание автомобиля
+        Обновление автомобиля
     </x-slot:header_info>
     <pre class="productFormP">Запись №: {{ $car->id }}</pre>
     <pre class="productFormP">Добавлена пользователем: {{ $car->user_id }}</pre>
