@@ -90,7 +90,7 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      *
      */
-    public function edit (User $admin)
+    public function edit(User $admin)
     {
         $roles = [
             'admin' => $admin->isAdministrator(),

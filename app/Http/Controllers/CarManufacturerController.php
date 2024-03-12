@@ -13,17 +13,17 @@ class CarManufacturerController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index ()
+    public function index()
     {
-        $list = CarManufacturer::paginate(10);
-        return view('_lvz/car-manufacturer-index', ['list' => $list]);
+        $manufacturers = CarManufacturer::paginate(10);
+        return view('_lvz/car-manufacturer-index', ['manufacturers' => $manufacturers]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
      */
-    public function create ()
+    public function create()
     {
         return view('_lvz/car-manufacturer-create');
     }
@@ -33,7 +33,7 @@ class CarManufacturerController extends Controller
      *
      * @param  \App\Http\Requests\StoreCarManufacturerRequest  $request
      */
-    public function store (StoreCarManufacturerRequest $request)
+    public function store(StoreCarManufacturerRequest $request)
     {
         if ($request->user()->cannot('create', CarManufacturer::class)) {
             return back()->withErrors([
@@ -68,7 +68,7 @@ class CarManufacturerController extends Controller
      * Show the form for editing the specified resource.
      *
      */
-    public function edit (CarManufacturer $car_manufacturer)
+    public function edit(CarManufacturer $car_manufacturer)
     {
         return view('_lvz/car-manufacturer-edit', ['car_manufacturer' => $car_manufacturer]);
     }

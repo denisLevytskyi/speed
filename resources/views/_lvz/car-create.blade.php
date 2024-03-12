@@ -1,9 +1,9 @@
 <x-l-layout::form :action="route('app.car.store')">
     <x-slot:title>
-        Добавление автомобиля
+        Создание автомобиля
     </x-slot:title>
     <x-slot:header_info>
-        Добавление автомобиля
+        Создание автомобиля
     </x-slot:header_info>
     <p class="formFormP">
         Производитель
@@ -11,8 +11,8 @@
     <x-l::form-input-error :messages="$errors->get('carCreateManufacturerId')"/>
     <x-l::form-select name="carCreateManufacturerId">
         <option value=""></option>
-        @foreach($list as $item)
-            <option value="{{ $item->id }}">{{ $item->mark }}</option>
+        @foreach($manufacturers as $manufacturer)
+            <option value="{{ $manufacturer->id }}">{{ $manufacturer->mark }}</option>
         @endforeach
     </x-l::form-select>
     <p class="formFormP">

@@ -19,7 +19,7 @@ class AdminPolicy
         //
     }
 
-    public function create (User $user)
+    public function create(User $user)
     {
         if ($user->isAdministrator()) {
             return TRUE;
@@ -28,7 +28,7 @@ class AdminPolicy
         }
     }
 
-    public function update (User $user) {
+    public function update(User $user) {
         if ($user->isAdministrator()) {
             return TRUE;
         } else {
@@ -36,7 +36,7 @@ class AdminPolicy
         }
     }
 
-    public function delete (User $user, User $current) {
+    public function delete(User $user, User $current) {
         if ($user->isAdministrator() and !$current->isAdministrator()) {
             return TRUE;
         } else {

@@ -22,8 +22,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        $list = CarManufacturer::all();
-        return view('_lvz/car-create', ['list' => $list]);
+        $manufacturers = CarManufacturer::all();
+        return view('_lvz/car-create', ['manufacturers' => $manufacturers]);
     }
 
     /**
@@ -71,10 +71,10 @@ class CarController extends Controller
      *
      * @param  \App\Models\Car  $car
      */
-    public function edit (Car $car)
+    public function edit(Car $car)
     {
-        $list = CarManufacturer::all();
-        return view('_lvz/car-edit', ['car' => $car, 'list' => $list]);
+        $manufacturers = CarManufacturer::all();
+        return view('_lvz/car-edit', ['car' => $car, 'manufacturers' => $manufacturers]);
     }
 
     /**

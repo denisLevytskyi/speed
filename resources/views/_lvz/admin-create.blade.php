@@ -1,9 +1,9 @@
 <x-l-layout::form :action="route('app.admin.store')">
     <x-slot:title>
-        Добавление пользователя
+        Создание пользователя
     </x-slot:title>
     <x-slot:header_info>
-        Добавление пользователя
+        Создание пользователя
     </x-slot:header_info>
     <p class="formFormP">
         Имя

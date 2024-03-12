@@ -1,10 +1,10 @@
 <x-l-layout::form :action="route('app.car.update', $car->id)">
     @method('put')
     <x-slot:title>
-        Редактирование автомобиля
+        Обновление автомобиля
     </x-slot:title>
     <x-slot:header_info>
-        Просмотр и редактирование автомобиля
+        Создание автомобиля
     </x-slot:header_info>
     <pre class="productFormP">Запись №: {{ $car->id }}</pre>
     <pre class="productFormP">Добавлена пользователем: {{ $car->user_id }}</pre>
@@ -15,8 +15,8 @@
     <x-l::form-input-error :messages="$errors->get('carEditManufacturerId')"/>
     <x-l::form-select name="carEditManufacturerId">
         <option value=""></option>
-        @foreach($list as $item)
-            <option value="{{ $item->id }}" {{ !($item->id == $car->manufacturer_id) ?: 'selected' }}>{{ $item->mark }}</option>
+        @foreach($manufacturers as $manufacturer)
+            <option value="{{ $manufacturer->id }}" {{ !($manufacturer->id == $car->manufacturer_id) ?: 'selected' }}>{{ $manufacturer->mark }}</option>
         @endforeach
     </x-l::form-select>
     <p class="formFormP">

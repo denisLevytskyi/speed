@@ -1,10 +1,10 @@
 <x-l-layout::form :action="route('app.car-manufacturer.update', $car_manufacturer->id)">
     @method('put')
     <x-slot:title>
-        Редактирование производителя
+        Обновление производителя
     </x-slot:title>
     <x-slot:header_info>
-        Просмотр и редактирование производителя
+        Обновление производителя
     </x-slot:header_info>
     <pre class="productFormP">Запись №: {{ $car_manufacturer->id }}</pre>
     <pre class="productFormP">Добавлена пользователем: {{ $car_manufacturer->user_id }}</pre>

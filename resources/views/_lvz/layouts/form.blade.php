@@ -1,10 +1,4 @@
-<x-l-layout::main showAuth="no" showStatus="no">
-    <x-slot:title>
-        {{ $title }}
-    </x-slot:title>
-    <x-slot:header_info>
-        {{ $header_info }}
-    </x-slot:header_info>
+<x-l-layout::main show-auth="no" show-status="no">
     <style>
         .formForm {
             display: flex;
@@ -47,6 +41,12 @@
             display: inline;
         }
     </style>
+    <x-slot:title>
+        {{ $title }}
+    </x-slot:title>
+    <x-slot:header_info>
+        {{ $header_info }}
+    </x-slot:header_info>
     @isset($before)
         {{ $before }}
     @endisset
