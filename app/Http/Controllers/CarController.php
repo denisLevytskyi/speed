@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use App\Models\CarManufacturer;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -21,7 +22,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('_lvz/car-create');
+        $list = CarManufacturer::all();
+        return view('_lvz/car-create', ['list' => $list]);
     }
 
     /**
@@ -33,11 +35,11 @@ class CarController extends Controller
         if ($request->user()->cannot('create', Car::class)) {
             return back()->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
-            ]);
+            ])->withInput();
         }
         $data = [
             'user_id' => $request->user()->id,
-            'manufacturer' => $request->carCreateManufacturer,
+            'manufacturer_id' => $request->carCreateManufacturerId,
             'model' => $request->carCreateModel,
             'number' => $request->carCreateNumber,
             'color' => $request->carCreateColor,
@@ -69,9 +71,10 @@ class CarController extends Controller
      *
      * @param  \App\Models\Car  $car
      */
-    public function edit(Car $car)
+    public function edit (Car $car)
     {
-        return view('_lvz/car-edit', ['car' => $car]);
+        $list = CarManufacturer::all();
+        return view('_lvz/car-edit', ['car' => $car, 'list' => $list]);
     }
 
     /**
@@ -88,7 +91,7 @@ class CarController extends Controller
             ]);
         }
         $data = [
-            'manufacturer' => $request->carEditManufacturer,
+            'manufacturer_id' => $request->carEditManufacturerId,
             'model' => $request->carEditModel,
             'number' => $request->carEditNumber,
             'color' => $request->carEditColor,

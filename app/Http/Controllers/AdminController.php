@@ -40,7 +40,7 @@ class AdminController extends Controller
         if ($request->user()->cannot('create', User::class)) {
             return back()->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
-            ]);
+            ])->withInput();
         }
         $data = [
             'name' => $request->adminCreateName,
@@ -61,10 +61,12 @@ class AdminController extends Controller
                     'role_id' => 2
                 ]);
             }
-            UserRole::create([
-                'user_id' => $user->id,
-                'role_id' => 1
-            ]);
+            if ($request->boolean('adminCreateGuest')) {
+                UserRole::create([
+                    'user_id' => $user->id,
+                    'role_id' => 1
+                ]);
+            }
             return redirect(route('app.admin.index'))->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
@@ -117,7 +119,7 @@ class AdminController extends Controller
             $data['password'] = Hash::make($request->adminEditPassword);
         }
         if ($admin->update($data)) {
-            UserRole::where('user_id', $admin->id)->where('role_id', '!=',1)->delete();
+            UserRole::where('user_id', $admin->id)->delete();
             if ($request->boolean('adminEditAdmin')) {
                 UserRole::create([
                     'user_id' => $admin->id,
@@ -128,6 +130,12 @@ class AdminController extends Controller
                 UserRole::create([
                     'user_id' => $admin->id,
                     'role_id' => 2
+                ]);
+            }
+            if ($request->boolean('adminEditGuest')) {
+                UserRole::create([
+                    'user_id' => $admin->id,
+                    'role_id' => 1
                 ]);
             }
             return back()->with(['status' => 'Обновлено']);

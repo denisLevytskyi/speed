@@ -32,6 +32,9 @@
     <x-l::form-input-check name="adminEditUser" :checked="$roles['user']">
         Подьзователь
     </x-l::form-input-check>
+    <x-l::form-input-check name="adminEditGuest" :checked="$roles['guest']">
+        Гость
+    </x-l::form-input-check>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>

@@ -78,14 +78,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function isAdministrator () {
-        return$this->roles()->where('role', '=', 'ADMIN')->exists();
+        return $this->roles()->where('role', '=', 'ADMIN')->exists();
     }
 
     public function isUser () {
-        return$this->roles()->where('role', '=', 'USER')->exists();
+        return $this->roles()->where('role', '=', 'USER')->exists();
     }
 
     public function isGuest () {
-        return$this->roles()->where('role', '=', 'GUEST')->exists();
+        return $this->roles()->where('role', '=', 'GUEST')->exists();
     }
 }

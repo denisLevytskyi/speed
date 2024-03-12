@@ -31,6 +31,9 @@
     <x-l::form-input-check name="adminCreateUser">
         Подьзователь
     </x-l::form-input-check>
+    <x-l::form-input-check name="adminCreateGuest">
+        Гость
+    </x-l::form-input-check>
     <x-l::form-btn>
         Добавить
     </x-l::form-btn>

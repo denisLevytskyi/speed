@@ -39,9 +39,13 @@ class CarManufacturerPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create (User $user)
     {
-        //
+        if ($user->isUser() or $user->isAdministrator()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -51,9 +55,13 @@ class CarManufacturerPolicy
      * @param  \App\Models\CarManufacturer  $carManufacturer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, CarManufacturer $carManufacturer)
+    public function update (User $user, CarManufacturer $carManufacturer)
     {
-        //
+        if ($user->isAdministrator() or ($user->id == $carManufacturer->user_id and $user->isUser())) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -63,9 +71,13 @@ class CarManufacturerPolicy
      * @param  \App\Models\CarManufacturer  $carManufacturer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, CarManufacturer $carManufacturer)
+    public function delete (User $user, CarManufacturer $carManufacturer)
     {
-        //
+        if ($user->isAdministrator() or ($user->id == $carManufacturer->user_id and $user->isUser())) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**

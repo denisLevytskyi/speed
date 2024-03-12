@@ -43,10 +43,10 @@ class CarPolicy
      */
     public function create (User $user)
     {
-        if ($user->isGuest()) {
-            return FALSE;
-        } else {
+        if ($user->isUser() or $user->isAdministrator()) {
             return TRUE;
+        } else {
+            return FALSE;
         }
     }
 
@@ -59,7 +59,7 @@ class CarPolicy
      */
     public function update (User $user, Car $car)
     {
-        if ($user->isAdministrator() or $user->id == $car->user_id) {
+        if ($user->isAdministrator() or ($user->id == $car->user_id and $user->isUser())) {
             return TRUE;
         } else {
             return FALSE;
@@ -75,7 +75,7 @@ class CarPolicy
      */
     public function delete (User $user, Car $car)
     {
-        if ($user->isAdministrator() or $user->id == $car->user_id) {
+        if ($user->isAdministrator() or ($user->id == $car->user_id and $user->isUser())) {
             return TRUE;
         } else {
             return FALSE;

@@ -24,7 +24,7 @@ class UpdateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'carEditManufacturer' => 'required',
+            'carEditManufacturerId' => ['required', 'integer'],
             'carEditModel' => 'required',
             'carEditNumber' => ['required', 'min:4', 'max:10'],
             'carEditColor' => ['required', 'min:4', 'max:20'],

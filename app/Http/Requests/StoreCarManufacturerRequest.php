@@ -13,7 +13,7 @@ class StoreCarManufacturerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreCarManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'carManufacturerCreateMark' => ['required', 'min:4', 'max:20']
         ];
     }
 }

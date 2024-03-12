@@ -24,7 +24,7 @@ class StoreCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'carCreateManufacturer' => 'required',
+            'carCreateManufacturerId' => ['required', 'integer'],
             'carCreateModel' => 'required',
             'carCreateNumber' => ['required', 'min:4', 'max:10'],
             'carCreateColor' => ['required', 'min:4', 'max:20'],

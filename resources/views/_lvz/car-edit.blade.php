@@ -12,8 +12,13 @@
     <p class="formFormP">
         Производитель
     </p>
-    <x-l::form-input-error :messages="$errors->get('carEditManufacturer')"/>
-    <x-l::form-input name="carEditManufacturer" type="text" :value="$car->manufacturer"/>
+    <x-l::form-input-error :messages="$errors->get('carEditManufacturerId')"/>
+    <x-l::form-select name="carEditManufacturerId">
+        <option value=""></option>
+        @foreach($list as $item)
+            <option value="{{ $item->id }}" {{ !($item->id == $car->manufacturer_id) ?: 'selected' }}>{{ $item->mark }}</option>
+        @endforeach
+    </x-l::form-select>
     <p class="formFormP">
         Модель
     </p>

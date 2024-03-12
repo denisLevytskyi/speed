@@ -11,11 +11,19 @@ class Car extends Model
 
     protected $fillable = [
         'user_id',
-        'manufacturer',
+        'manufacturer_id',
         'model',
         'number',
         'color',
         'fuel',
         'year'
     ];
+
+    public function manufacturer () {
+        return $this->hasOne(CarManufacturer::class, 'id', 'manufacturer_id');
+    }
+
+    public function getMark () {
+        return $this->manufacturer->mark;
+    }
 }
