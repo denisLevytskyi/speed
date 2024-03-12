@@ -24,12 +24,12 @@ class UpdateCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'CarEditManufacturer' => 'required',
-            'CarEditModel' => 'required',
-            'CarEditNumber' => ['required', 'min:4', 'max:10'],
-            'CarEditColor' => ['required', 'min:4', 'max:20'],
-            'CarEditFuel' => 'required',
-            'CarEditYear' => ['required', 'numeric']
+            'carEditManufacturer' => 'required',
+            'carEditModel' => 'required',
+            'carEditNumber' => ['required', 'min:4', 'max:10'],
+            'carEditColor' => ['required', 'min:4', 'max:20'],
+            'carEditFuel' => 'required',
+            'carEditYear' => ['required', 'numeric']
         ];
     }
 }

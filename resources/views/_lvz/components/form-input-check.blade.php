@@ -1,9 +1,4 @@
-<style>
-    .formFormBox * {
-        display: inline;
-    }
-</style>
-<div {{ $attributes }} class="formFormBox">
-    <input type="checkbox" class="formFormBoxCheck">
+<div class="formFormBox">
+    <input {{ $attributes }} type="checkbox" class="formFormBoxCheck" {{ !$checked ?: 'checked' }}>
     <p>{{ $slot }}</p>
 </div>

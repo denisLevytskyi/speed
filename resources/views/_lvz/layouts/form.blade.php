@@ -28,7 +28,6 @@
         .formFormStatus {
             background: palegreen;
             text-align: center;
-            color: white;
             margin-bottom: 2px;
             padding: 2px;
             border-radius: 10px;

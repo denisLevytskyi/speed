@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
-class StoreCarRequest extends FormRequest
+class UpdateAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +26,9 @@ class StoreCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'carCreateManufacturer' => 'required',
-            'carCreateModel' => 'required',
-            'carCreateNumber' => ['required', 'min:4', 'max:10'],
-            'carCreateColor' => ['required', 'min:4', 'max:20'],
-            'carCreateFuel' => 'required',
-            'carCreateYear' => ['required', 'numeric']
+            'adminEditName' => ['required', 'string', 'max:255'],
+            'adminEditEmail' => ['required', 'string', 'email', 'max:255'],
+            'adminEditPassword' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ];
     }
 }

@@ -12,28 +12,28 @@
     <p class="formFormP">
         Производитель
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditManufacturer')"/>
-    <x-l::form-input name="CarEditManufacturer" type="text" :value="$car->manufacturer"/>
+    <x-l::form-input-error :messages="$errors->get('carEditManufacturer')"/>
+    <x-l::form-input name="carEditManufacturer" type="text" :value="$car->manufacturer"/>
     <p class="formFormP">
         Модель
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditModel')"/>
-    <x-l::form-input name="CarEditModel" type="text" :value="$car->model"/>
+    <x-l::form-input-error :messages="$errors->get('carEditModel')"/>
+    <x-l::form-input name="carEditModel" type="text" :value="$car->model"/>
     <p class="formFormP">
         Государственный номер
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditNumber')"/>
-    <x-l::form-input name="CarEditNumber" type="text" :value="$car->number"/>
+    <x-l::form-input-error :messages="$errors->get('carEditNumber')"/>
+    <x-l::form-input name="carEditNumber" type="text" :value="$car->number"/>
     <p class="formFormP">
         Цвет
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditColor')"/>
-    <x-l::form-input name="CarEditColor" type="text" :value="$car->color"/>
+    <x-l::form-input-error :messages="$errors->get('carEditColor')"/>
+    <x-l::form-input name="carEditColor" type="text" :value="$car->color"/>
     <p class="formFormP">
         Топливо
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditFuel')"/>
-    <x-l::form-select name="CarEditFuel">
+    <x-l::form-input-error :messages="$errors->get('carEditFuel')"/>
+    <x-l::form-select name="carEditFuel">
         <option value="Газ" {{ $car->fuel == 'Газ' ? 'selected' : '' }}>Газ</option>
         <option value="Бензин" {{ $car->fuel == 'Бензин' ? 'selected' : '' }}>Бензин</option>
         <option value="Дизель" {{ $car->fuel == 'Дизель' ? 'selected' : '' }}>Дизель</option>
@@ -41,15 +41,15 @@
     <p class="formFormP">
         Год выпуска
     </p>
-    <x-l::form-input-error :messages="$errors->get('CarEditYear')"/>
-    <x-l::form-input name="CarEditYear" type="number" min="1900" max="2030" step="1" :value="$car->year"/>
+    <x-l::form-input-error :messages="$errors->get('carEditYear')"/>
+    <x-l::form-input name="carEditYear" type="number" min="1900" max="2030" step="1" :value="$car->year"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
-    <a href="" class="formFormA">
+    <a href="{{ route('app.car.index') }}" class="formFormA">
         Назад
     </a>
-    <x-l::form-delete :action="route('app.car.destroy', ['car' => $car->id])">
+    <x-l::form-delete :action="route('app.car.destroy', $car->id)">
         Удалить
     </x-l::form-delete>
 </x-l-layout::form>

@@ -5,18 +5,6 @@
     <x-slot:header_info>
         Список автомобилей
     </x-slot:header_info>
-    <style>
-        .listWrapItem {
-            background: lightgrey;
-            border-radius: 2px;
-            margin: 5px 0;
-            padding: 5px;
-        }
-
-        .listWrapItemA {
-            color: black;
-        }
-    </style>
     <section class="list">
         <div class="container typicalContainer">
             <a href="{{ route('app.car.create') }}" class="listA">
@@ -25,7 +13,7 @@
             <div class="listWrap">
                 @foreach($cars as $car)
                     <div class="listWrapItem">
-                        <a href="{{ route('app.car.edit',['car' => $car->id]) }}" class="listWrapItemA">
+                        <a href="{{ route('app.car.edit', $car->id) }}" class="listWrapItemA">
                             {{ $car->id . ' ' . $car->manufacturer . ' ' . $car->model . ' ' . $car->number}}
                         </a>
                     </div>

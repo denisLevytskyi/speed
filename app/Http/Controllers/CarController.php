@@ -37,12 +37,12 @@ class CarController extends Controller
         }
         $data = [
             'user_id' => $request->user()->id,
-            'manufacturer' => $request->CarCreateManufacturer,
-            'model' => $request->CarCreateModel,
-            'number' => $request->CarCreateNumber,
-            'color' => $request->CarCreateColor,
-            'fuel' => $request->CarCreateFuel,
-            'year' => $request->CarCreateYear
+            'manufacturer' => $request->carCreateManufacturer,
+            'model' => $request->carCreateModel,
+            'number' => $request->carCreateNumber,
+            'color' => $request->carCreateColor,
+            'fuel' => $request->carCreateFuel,
+            'year' => $request->carCreateYear
         ];
         if (Car::create($data)) {
             return redirect(route('app.car.index'))->with(['status' => 'Запись успешно добавлена']);
@@ -88,15 +88,14 @@ class CarController extends Controller
             ]);
         }
         $data = [
-            'manufacturer' => $request->CarEditManufacturer,
-            'model' => $request->CarEditModel,
-            'number' => $request->CarEditNumber,
-            'color' => $request->CarEditColor,
-            'fuel' => $request->CarEditFuel,
-            'year' => $request->CarEditYear
+            'manufacturer' => $request->carEditManufacturer,
+            'model' => $request->carEditModel,
+            'number' => $request->carEditNumber,
+            'color' => $request->carEditColor,
+            'fuel' => $request->carEditFuel,
+            'year' => $request->carEditYear
         ];
-        $result = $car->update($data);
-        if ($result) {
+        if ($car->update($data)) {
             return back()->with(['status' => 'Обновлено']);
         } else {
             return back()->withErrors([
@@ -110,7 +109,7 @@ class CarController extends Controller
      *
 
      */
-    public function destroy(Request $request,Car $car)
+    public function destroy(Request $request, Car $car)
     {
         if ($request->user()->cannot('delete', $car)) {
             return back()->withErrors([

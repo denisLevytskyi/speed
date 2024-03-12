@@ -101,11 +101,21 @@ section {
 .status .container {
     background: palegreen;
     text-align: center;
-    color: white;
 }
 
 .statusError .container {
     background: #d32121;
     text-align: center;
     color: white;
+}
+
+.listWrapItem {
+    background: lightgrey;
+    border-radius: 2px;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.listWrapItemA {
+    color: black;
 }

@@ -13,7 +13,6 @@
     <x-l::form-input name="registerPassword" type="password" placeholder="Пароль" :value="old('registerPassword')"/>
     <x-l::form-input-error :messages="$errors->get('registerPassword_confirmation')"/>
     <x-l::form-input name="registerPassword_confirmation" type="password" placeholder="Пароль" :value="old('registerPassword_confirmation')"/>
-
     <x-l::form-btn>
         Регистрация
     </x-l::form-btn>
