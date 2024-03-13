@@ -14,7 +14,7 @@
                 @foreach($cars as $car)
                     <div class="listWrapItem">
                         <a href="{{ route('app.car.edit', $car->id) }}" class="listWrapItemA">
-                            {{ $car->id . ' ' . $car->getMark() . ' ' . $car->model . ' ' . $car->number}}
+                            {{ $car->id . ' ' . $car->manufacturer->mark . ' ' . $car->model . ' ' . $car->number}}
                         </a>
                     </div>
                 @endforeach

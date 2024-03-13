@@ -13,7 +13,7 @@ class UpdateDriveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**

@@ -20,10 +20,10 @@ class Car extends Model
     ];
 
     public function manufacturer () {
-        return $this->hasOne(CarManufacturer::class, 'id', 'manufacturer_id');
+        return $this->belongsTo(CarManufacturer::class, 'manufacturer_id', 'id');
     }
 
-    public function getMark () {
-        return $this->manufacturer->mark;
+    public function user () {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

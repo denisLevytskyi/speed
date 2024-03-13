@@ -88,18 +88,27 @@ class DriveController extends Controller
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
+        return view('_lvz/drive-edit', ['drive' => $drive]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDriveRequest  $request
-     * @param  \App\Models\Drive  $drive
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateDriveRequest $request, Drive $drive)
     {
-        //
+        if ($request->user()->cannot('update', $drive)) {
+            return back()->withErrors([
+                'status' => 'Вы не можете выполнить данное действие!'
+            ]);
+        }
+        if ($drive->update(['status' => TRUE])) {
+            return redirect(route('app.drive.index'))->with(['status' => 'Поездка завершена']);
+        } else {
+            return back()->withErrors([
+                'status' => 'Ошибка внесения данных в БД'
+            ]);
+        }
     }
 
     /**

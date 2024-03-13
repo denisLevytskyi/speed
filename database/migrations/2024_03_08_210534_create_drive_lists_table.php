@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('drive_lists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
         });
     }
 
