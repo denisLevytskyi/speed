@@ -6,10 +6,12 @@ namespace App\Providers;
 use App\Http\Controllers\CarController;
 use App\Models\Car;
 use App\Models\CarManufacturer;
+use App\Models\Drive;
 use App\Models\User;
 use App\Policies\AdminPolicy;
 use App\Policies\CarManufacturerPolicy;
 use App\Policies\CarPolicy;
+use App\Policies\DrivePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,7 +24,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Car::class => CarPolicy::class,
         User::class => AdminPolicy::class,
-        CarManufacturer::class => CarManufacturerPolicy::class
+        CarManufacturer::class => CarManufacturerPolicy::class,
+        Drive::class => DrivePolicy::class
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 

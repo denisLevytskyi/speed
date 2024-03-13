@@ -13,7 +13,7 @@ class StoreDriveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreDriveRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'driveCreateCarId' => ['required', 'integer'],
+            'driveCreatePointA' => ['required', 'min:4', 'max:10'],
+            'driveCreatePointB' => ['required', 'min:4', 'max:20'],
+            'driveCreateOdometer' => ['required', 'numeric']
         ];
     }
 }

@@ -11,14 +11,14 @@
                 Добавить производителя
             </a>
             <div class="listWrap">
-                @foreach($manufacturers as $manufacturer)
+                @foreach($car_manufacturers as $car_manufacturer)
                     <div class="listWrapItem">
-                        <a href="{{ route('app.car-manufacturer.edit', $manufacturer->id) }}" class="listWrapItemA">
-                            {{ $manufacturer->id . ' ' . $manufacturer->mark }}
+                        <a href="{{ route('app.car-manufacturer.edit', $car_manufacturer->id) }}" class="listWrapItemA">
+                            {{ $car_manufacturer->id . ' ' . $car_manufacturer->mark }}
                         </a>
                     </div>
                 @endforeach
-                {{ $manufacturers->onEachSide(1)->links() }}
+                {{ $car_manufacturers->onEachSide(1)->links() }}
             </div>
         </div>
     </section>

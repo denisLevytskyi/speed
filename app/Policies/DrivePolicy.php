@@ -30,7 +30,21 @@ class DrivePolicy
      */
     public function view(User $user, Drive $drive)
     {
-        //
+        if ($drive->status == FALSE) {
+            return FALSE;
+        } elseif ($user->isAdministrator() or ($user->id == $drive->user_id and $user->isUser())) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function create(User $user) {
+        if (Drive::where('user_id', $user->id)->where('status', FALSE)->exists()) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
     /**
@@ -39,9 +53,15 @@ class DrivePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function store(User $user)
     {
-        //
+        if (Drive::where('user_id', $user->id)->where('status', FALSE)->exists()) {
+            return FALSE;
+        } elseif ($user->isUser() or $user->isAdministrator()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -53,7 +73,13 @@ class DrivePolicy
      */
     public function update(User $user, Drive $drive)
     {
-        //
+        if ($drive->status) {
+            return FALSE;
+        } elseif ($user->id == $drive->user_id) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /**

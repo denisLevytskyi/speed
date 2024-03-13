@@ -17,6 +17,9 @@
                 <a href="{{ route('app.car.index') }}" class="linksWrapperA">
                     Автомобили
                 </a>
+                <a href="{{ route('app.drive.index') }}" class="linksWrapperA">
+                    Поездки
+                </a>
                 <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
                     Пользователи
                 </a>
