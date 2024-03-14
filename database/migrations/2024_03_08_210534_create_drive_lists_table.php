@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('drive_lists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
+            $table->foreignId('drive_id')->constrained('drives', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('timestamp')->nullable();
+            $table->string('speed')->nullable();
+            $table->string('time')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
         });
     }
 

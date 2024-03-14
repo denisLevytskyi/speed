@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\DriveList;
 use App\Http\Requests\StoreDriveListRequest;
 use App\Http\Requests\UpdateDriveListRequest;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class DriveListController extends Controller
 {
+    public function terminal (Request $request) {
+        if (DriveList::create($request->all())) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

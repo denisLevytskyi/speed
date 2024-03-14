@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class DriveList extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'drive_id',
+        'timestamp',
+        'speed',
+        'time',
+        'latitude',
+        'longitude',
+    ];
 }
