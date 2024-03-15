@@ -74,7 +74,7 @@ class DriveController extends Controller
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        dd(1);
+        return view('_lvz/drive-show', ['drive' => $drive]);
     }
 
     /**
