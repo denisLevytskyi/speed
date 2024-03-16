@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
-a { 
+a {
 	text-decoration: none;
 	color: inherit;
 	font-size: 18px;
@@ -81,7 +81,11 @@ body {
 }
 
 .mainItem {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+}
+
+.mainItemClick {
+    cursor: pointer;
 }
 
 .mainItemName {
@@ -91,7 +95,7 @@ body {
 .footerSum {
 	text-align: right;
 	font-weight: bold;
-	font-size: 17px;
+	font-size: 15px;
 	border-top: 2px dashed black;
 	border-bottom: 2px dashed black;
 	margin: 10px 0;
@@ -108,10 +112,6 @@ body {
 .footerDeskP {
 	text-align-last: justify;
 	font-weight: bold;
-}
-
-.footerTax {
-	margin: 10px 0;
 }
 
 .footerNum {
@@ -145,4 +145,8 @@ body {
 
 .c0 {
 	display: none;
+}
+
+.c1 {
+    display: block;
 }

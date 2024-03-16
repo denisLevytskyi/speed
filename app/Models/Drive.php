@@ -25,4 +25,12 @@ class Drive extends Model
     public function car () {
         return $this->belongsTo(Car::class, 'car_id', 'id');
     }
+
+    public function list () {
+        return $this->hasMany(DriveList::class, 'drive_id', 'id');
+    }
+
+    public function hasData () {
+        return $this->list()->exists();
+    }
 }

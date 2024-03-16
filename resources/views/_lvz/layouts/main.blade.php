@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="headerWrap">
                     <a href="/" class="headerWrapLink">
-                        <img src="/images/main_logo.png" class="headerWrapLinkImg">
+                        <img src="{{ asset('images/main_logo.png') }}" class="headerWrapLinkImg">
                     </a>
                     <p class="headerWrapP">[LVZ] {{ $header_info }}</p>
                 </div>

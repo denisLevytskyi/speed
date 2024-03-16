@@ -67,14 +67,14 @@ class DriveController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Drive $drive)
+    public function show(PropController $props ,Drive $drive)
     {
         if (Auth::user()->cannot('view', $drive)) {
             return redirect(route('app.drive.index'))->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        return view('_lvz/drive-show', ['drive' => $drive]);
+        return view('_lvz/drive-show', ['drive' => $drive, 'props' => $props]);
     }
 
     /**
@@ -102,7 +102,11 @@ class DriveController extends Controller
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        if ($drive->update(['status' => TRUE])) {
+        if (!$drive->hasData())  {
+            return back()->withErrors([
+               'status' => 'Для завершения нужно хотя-бы одна запись'
+            ]);
+        } elseif ($drive->update(['status' => TRUE])) {
             return redirect(route('app.drive.index'))->with(['status' => 'Поездка завершена']);
         } else {
             return back()->withErrors([
