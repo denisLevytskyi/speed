@@ -99,8 +99,8 @@
 
                 const speedData = {
                     timestamp: timestamp,
-                    speed: speed,
                     time: time,
+                    speed: speed,
                     latitude: latitude,
                     longitude: longitude
                 };
@@ -139,10 +139,10 @@
 
             const getRequestText = (data) => {
                 data.timestamp = Math.round(data.timestamp / 1000);
-                data.speed = Math.round(data.speed * 100) / 100;
                 data.time = Math.round(data.time * 100) / 100;
+                data.speed = Math.round(data.speed * 100) / 100;
                 let drive_id = getValueFromUrl();
-                return `?drive_id=${drive_id}&timestamp=${data.timestamp}&speed=${data.speed}&time=${data.time}&latitude=${data.latitude}&longitude=${data.longitude}`;
+                return `?drive_id=${drive_id}&timestamp=${data.timestamp}&time=${data.time}&speed=${data.speed}&latitude=${data.latitude}&longitude=${data.longitude}`;
             }
 
             const sendRequest = (data) => {
@@ -166,8 +166,8 @@
                     if (dataList.length > 0) {
                         let dataListCast = {
                             timestamp: dataList[0].timestamp,
-                            speed: dataList[0].speed,
                             time: dataList[0].time,
+                            speed: dataList[0].speed,
                             latitude: dataList[0].latitude,
                             longitude: dataList[0].longitude
                         };

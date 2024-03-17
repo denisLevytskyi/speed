@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\Drive;
 use App\Http\Requests\StoreDriveRequest;
 use App\Http\Requests\UpdateDriveRequest;
+use App\Models\Prop;
 use Illuminate\Support\Facades\Auth;
 
 class DriveController extends Controller
@@ -67,14 +68,14 @@ class DriveController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(PropController $props ,Drive $drive)
+    public function show(Prop $prop ,Drive $drive)
     {
         if (Auth::user()->cannot('view', $drive)) {
             return redirect(route('app.drive.index'))->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        return view('_lvz/drive-show', ['drive' => $drive, 'props' => $props]);
+        return view('_lvz/drive-show', ['drive' => $drive, 'prop' => $prop]);
     }
 
     /**

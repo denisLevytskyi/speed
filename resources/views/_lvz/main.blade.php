@@ -23,6 +23,9 @@
                 <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
                     Пользователи
                 </a>
+                <a href="{{ route('app.prop.index') }}" class="linksWrapperA">
+                    Свойства
+                </a>
             </div>
         </div>
     </section>

@@ -12,26 +12,29 @@
                 <img src="{{ asset('images/main_logo.png') }}" class="headerAImg">
             </a>
             <p class="headerP">
-                {{ $props->get('org_name') }}
+                {{ $prop->getProp('org_name') }}
             </p>
             <p class="headerP">
-                {{ $props->get('sub_name') }}
+                {{ $prop->getProp('sub_name') }}
             </p>
             <p class="headerP">
-                {{ $props->get('sub_address') }}
+                {{ $prop->getProp('sub_address_1') }}
+            </p>
+            <p class="headerP">
+                {{ $prop->getProp('sub_address_2') }}
             </p>
             <div class="headerProps">
                 <p class="headerPropsP">
-                    ІД {{ $props->get('id') }}
+                    ІД {{ $prop->getProp('id') }}
                 </p>
                 <p class="headerPropsP">
-                    ПН {{ $props->get('pn') }}
+                    ПН {{ $prop->getProp('pn') }}
                 </p>
                 <p class="headerPropsP">
-                    ВН {{ $props->get('version') }}
+                    ВН {{ $prop->getProp('version') }}
                 </p>
                 <p class="headerPropsP">
-                    СН {{ $props->get('assembly') }}
+                    СН {{ $prop->getProp('assembly') }}
                 </p>
             </div>
             <div class="headerInfo">
@@ -43,6 +46,15 @@
                 </p>
                 <p class="headerInfoP">
                     Закончена: {{ $drive->updated_at }}
+                </p>
+                <p class="headerInfoP">
+                    От: {{ $drive->point_a }}
+                </p>
+                <p class="headerInfoP">
+                    До: {{ $drive->point_b }}
+                </p>
+                <p class="headerInfoP">
+                    ПО: {{ $drive->odometer }} км
                 </p>
             </div>
         </header>
@@ -93,12 +105,6 @@
                         {{ $list->created_at }} -> {{ $list->speed }} км/ч
                     </p>
                     <p class="mainItemP c0">
-                        -> ШИРОТА: {{ $list->latitude }}
-                    </p>
-                    <p class="mainItemP c0">
-                        -> ДОЛГОТА: {{ $list->longitude }}
-                    </p>
-                    <p class="mainItemP c0">
                         -> № ПАКЕТА: {{ $list->id }}
                     </p>
                     <p class="mainItemP c0">
@@ -106,6 +112,12 @@
                     </p>
                     <p class="mainItemP c0">
                         -> СМЕЩЕНИЕ: {{ $list->time }} сек
+                    </p>
+                    <p class="mainItemP c0">
+                        -> ШИРОТА: {{ $list->latitude }}
+                    </p>
+                    <p class="mainItemP c0">
+                        -> ДОЛГОТА: {{ $list->longitude }}
                     </p>
                 </div>
             @endforeach
