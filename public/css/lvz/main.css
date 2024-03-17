@@ -128,7 +128,7 @@ section {
     width: 180px;
     max-width: 100%;
     text-align: center;
-    margin: 5px 0;
+    margin: 5px;
     transition-duration: 1s;
     color: black;
 }
