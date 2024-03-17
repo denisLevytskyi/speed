@@ -29,7 +29,7 @@
         Администратор
     </x-l::form-input-check>
     <x-l::form-input-check name="adminCreateUser">
-        Подьзователь
+        Пользователь
     </x-l::form-input-check>
     <x-l::form-input-check name="adminCreateGuest">
         Гость
