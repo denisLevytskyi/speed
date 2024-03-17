@@ -30,7 +30,7 @@
         Администратор
     </x-l::form-input-check>
     <x-l::form-input-check name="adminEditUser" :checked="$roles['user']">
-        Подьзователь
+        Пользователь
     </x-l::form-input-check>
     <x-l::form-input-check name="adminEditGuest" :checked="$roles['guest']">
         Гость
