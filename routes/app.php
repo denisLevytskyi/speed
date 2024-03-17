@@ -7,7 +7,7 @@ use App\Http\Controllers\DriveController;
 use App\Http\Controllers\DriveListController;
 use App\Http\Controllers\PropController;
 
-Route::name('app.')->middleware(['auth', 'verified'])->group(function() {
+Route::name('app.')->middleware(['auth', 'verified', 'is.guest'])->group(function() {
     Route::resource('car', CarController::class);
     Route::resource('admin', AdminController::class);
     Route::resource('car-manufacturer', CarManufacturerController::class);
@@ -19,5 +19,4 @@ Route::get('terminal', [DriveListController::class, 'terminal'])->name('app.term
 Route::get('qr/{data}', function ($data) {
     include 'script/qrcode.php';
     QRcode::png(Crypt::decryptString($data), FALSE, 'M', 20, 0);
-
 })->name('app.qr');

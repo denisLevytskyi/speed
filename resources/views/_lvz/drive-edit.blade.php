@@ -49,6 +49,7 @@
             let packetsReceivedVal = 1;
 
             let fresh;
+            let old;
             navigator.geolocation.watchPosition(function (position) {
                 fresh = position;
             });
@@ -80,16 +81,14 @@
                 let latitude = fresh.coords.latitude;
                 let longitude = fresh.coords.longitude;
 
-                if (localStorage.getItem('prevCoords')) {
-                    const prevCoords = JSON.parse(localStorage.getItem('prevCoords'));
-
-                    const prevTime = prevCoords.timestamp;
+                if (old) {
+                    const prevTime = old.timestamp;
                     const currTime = timestamp;
                     const timeDiff = (currTime - prevTime) / 1000; // time difference in seconds
                     time = timeDiff;
 
-                    const prevLat = prevCoords.latitude;
-                    const prevLng = prevCoords.longitude;
+                    const prevLat = old.latitude;
+                    const prevLng = old.longitude;
                     const currLat = latitude;
                     const currLng = longitude;
                     const distance = calculateDistance(prevLat, prevLng, currLat, currLng); // in kilometers
@@ -105,9 +104,8 @@
                     longitude: longitude
                 };
 
-                localStorage.setItem('prevCoords', JSON.stringify(speedData));
-
                 fresh = false;
+                old = speedData;
                 return speedData;
             }
 

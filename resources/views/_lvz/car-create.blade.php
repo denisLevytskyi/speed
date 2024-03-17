@@ -12,7 +12,7 @@
     <x-l::form-select name="carCreateManufacturerId">
         <option value=""></option>
         @foreach($manufacturers as $manufacturer)
-            <option value="{{ $manufacturer->id }}">{{ $manufacturer->mark }}</option>
+            <option value="{{ $manufacturer->id }}" {{ !($manufacturer->id == old('carCreateManufacturerId')) ?: 'selected' }}>{{ $manufacturer->mark }}</option>
         @endforeach
     </x-l::form-select>
     <p class="formFormP">
@@ -35,9 +35,10 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('carCreateFuel')"/>
     <x-l::form-select name="carCreateFuel">
-        <option value="Газ">Газ</option>
-        <option value="Бензин">Бензин</option>
-        <option value="Дизель">Дизель</option>
+        <option value=""></option>
+        <option value="Газ" {{ !(old('carCreateFuel') == 'Газ') ?: 'selected' }}>Газ</option>
+        <option value="Бензин" {{ !(old('carCreateFuel') == 'Бензин') ?: 'selected' }}>Бензин</option>
+        <option value="Дизель" {{ !(old('carCreateFuel') == 'Дизель') ?: 'selected' }}>Дизель</option>
     </x-l::form-select>
     <p class="formFormP">
         Год выпуска
