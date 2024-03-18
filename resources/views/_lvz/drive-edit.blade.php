@@ -105,10 +105,10 @@
                 };
 
                 fresh = false;
-                old = speedData;
                 if (speedData.speed >= 100) {
                     return false;
                 } else {
+                    old = speedData;
                     return speedData;
                 }
             }
