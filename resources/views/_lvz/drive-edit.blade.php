@@ -106,7 +106,11 @@
 
                 fresh = false;
                 old = speedData;
-                return speedData;
+                if (speedData.speed >= 100) {
+                    return false;
+                } else {
+                    return speedData;
+                }
             }
 
             let dataList = [];
@@ -147,15 +151,28 @@
                 let request = new XMLHttpRequest();
                 request.open('GET', '{{ route('app.terminal') }}' + getRequestText(data), true);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.timeout = 10000;
                 request.send();
                 request.onload = () => {
                     if (request.status === 200 && request.responseText === '1') {
                         dataList.shift();
                         packetsSent.value = packetsSentVal;
                         packetsSentVal ++;
+                    } else {
+                    	packetsSent.value = 'Ошибка сервера. Повтор...';
                     }
                     requestInterval();
                     delete(request);
+                };
+                request.ontimeout = () => {
+                	packetsSent.value = 'Таймаут. Запрос отозван. Повтор...';
+                	requestInterval();
+                	delete(request);
+                };
+                request.onerror = () => {
+                	packetsSent.value = 'Ошибка отправки. Повтор...';
+                	requestInterval();
+                	delete(request);
                 };
             };
 
