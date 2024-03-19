@@ -43,22 +43,35 @@
     </x-slot:before>
     <x-slot:after>
         <script>
-            /* Chat GPT magic <3 */
+            /* Cloner */
+            const getClone = (data) => {
+                let clone = {};
+                for (let key in data) {
+                    clone[key] = data[key];
+                }
+                return clone;
+            };
+
+            /* Get location data */
             const speedometer = document.getElementById('speedometer');
             const packetsReceived = document.getElementById('packetsReceived');
             let packetsReceivedVal = 1;
-
-            let fresh;
+            let geo;
             let old;
-            navigator.geolocation.watchPosition(function (position) {
-                fresh = position;
+            let fresh;
+            let list = [];
+
+            /* => Listen geolocation */
+            navigator.geolocation.watchPosition((position) => {
+                geo = position;
             });
 
-            function deg2rad(deg) {
+            /* => Prepare data and call to send request */
+            deg2rad = (deg) => {
                 return deg * (Math.PI / 180);
-            }
+            };
 
-            function calculateDistance(lat1, lon1, lat2, lon2) {
+            const calculateDistance = (lat1, lon1, lat2, lon2) => {
                 const R = 6371; // Radius of the earth in km
                 const dLat = deg2rad(lat2 - lat1);
                 const dLon = deg2rad(lon2 - lon1);
@@ -68,65 +81,65 @@
                 const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                 const distance = R * c; // Distance in km
                 return distance;
-            }
+            };
 
-            function getSpeedData() {
-                if (!fresh) {
+            const getSpeedData = () => {
+                if (!geo) {
                     return false;
                 }
 
-                let timestamp = fresh.timestamp;
-                let time = 0;
-                let speed = 0;
-                let latitude = fresh.coords.latitude;
-                let longitude = fresh.coords.longitude;
-
-                if (old) {
-                    const prevTime = old.timestamp;
-                    const currTime = timestamp;
-                    const timeDiff = (currTime - prevTime) / 1000; // time difference in seconds
-                    time = timeDiff;
-
-                    const prevLat = old.latitude;
-                    const prevLng = old.longitude;
-                    const currLat = latitude;
-                    const currLng = longitude;
-                    const distance = calculateDistance(prevLat, prevLng, currLat, currLng); // in kilometers
-
-                    speed = distance / (timeDiff / 3600); // speed in km/h
-                }
-
-                const speedData = {
-                    timestamp: timestamp,
-                    time: time,
-                    speed: speed,
-                    latitude: latitude,
-                    longitude: longitude
+                fresh = {
+                    timestamp: geo.timestamp,
+                    time: 0,
+                    speed: 0,
+                    latitude: geo.coords.latitude,
+                    longitude: geo.coords.longitude
                 };
 
-                fresh = false;
-                if (speedData.speed >= 100) {
+                if (old) {
+                    const distance = calculateDistance(old.latitude, old.longitude, fresh.latitude, fresh.longitude); // in kilometers
+                    fresh.time = (fresh.timestamp - old.timestamp) / 1000; // time difference in seconds
+                    fresh.speed = distance / (fresh.time / 3600); // speed in km/h
+                }
+
+                geo = false;
+                if (fresh.speed >= 100) {
+                    old = false;
+                    packetsReceived.value = 'Ошибка получения [100+]. Повтор...';
+                    return false;
+                } else if (!old) {
+                    old = getClone(fresh);
                     return false;
                 } else {
-                    old = speedData;
-                    return speedData;
-                }
-            }
-
-            let dataList = [];
-            setInterval(function(){
-                const data = getSpeedData();
-                if (data) {
-                    dataList.push(data);
-                    speedometer.value = Math.round(data.speed * 100) / 100;
+                    old = getClone(fresh);
+                    speedometer.value = Math.round(fresh.speed * 100) / 100;
                     packetsReceived.value = packetsReceivedVal;
                     packetsReceivedVal ++;
+                    return getClone(fresh);
                 }
-            }, 5000)
+            };
+
+            const geoInterval = () => {
+                setInterval(() => {
+                    let data = getSpeedData();
+                    if (data) {
+                        list.push(data);
+                    }
+                }, 6000);
+            };
+            geoInterval();
 
             /* Send Request to server */
             const packetsSent = document.getElementById('packetsSent');
             let packetsSentVal = 1;
+            let error = 0;
+
+            const errorCheck = () => {
+                if (error > 5) {
+                    location.reload();
+                }
+                error ++;
+            };
 
             const getValueFromUrl = () => {
                 // Получаем текущий URL страницы
@@ -137,7 +150,7 @@
                 let value = parts[parts.indexOf("drive") + 1];
                 // Возвращаем значение
                 return value;
-            }
+            };
 
             const getRequestText = (data) => {
                 data.timestamp = Math.round(data.timestamp / 1000);
@@ -145,53 +158,49 @@
                 data.speed = Math.round(data.speed * 100) / 100;
                 let drive_id = getValueFromUrl();
                 return `?drive_id=${drive_id}&timestamp=${data.timestamp}&time=${data.time}&speed=${data.speed}&latitude=${data.latitude}&longitude=${data.longitude}`;
-            }
+            };
 
             const sendRequest = (data) => {
-                let request = new XMLHttpRequest();
+                const request = new XMLHttpRequest();
                 request.open('GET', '{{ route('app.terminal') }}' + getRequestText(data), true);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 request.timeout = 10000;
                 request.send();
                 request.onload = () => {
                     if (request.status === 200 && request.responseText === '1') {
-                        dataList.shift();
+                        list.shift();
                         packetsSent.value = packetsSentVal;
                         packetsSentVal ++;
+                        error = 0;
                     } else {
-                    	packetsSent.value = 'Ошибка сервера. Повтор...';
+                        packetsSent.value = 'Ошибка сервера. Повтор...';
+                        errorCheck();
                     }
                     requestInterval();
                     delete(request);
                 };
                 request.ontimeout = () => {
-                	packetsSent.value = 'Таймаут. Запрос отозван. Повтор...';
-                	requestInterval();
-                	delete(request);
+                    packetsSent.value = 'Таймаут, запрос отозван. Повтор...';
+                    requestInterval();
+                    delete(request);
                 };
                 request.onerror = () => {
-                	packetsSent.value = 'Ошибка отправки. Повтор...';
-                	requestInterval();
-                	delete(request);
+                    packetsSent.value = 'Ошибка отправки. Повтор...';
+                    requestInterval();
+                    delete(request);
                 };
             };
 
             const requestInterval = () => {
-                setTimeout( () => {
-                    if (dataList.length > 0) {
-                        let dataListCast = {
-                            timestamp: dataList[0].timestamp,
-                            time: dataList[0].time,
-                            speed: dataList[0].speed,
-                            latitude: dataList[0].latitude,
-                            longitude: dataList[0].longitude
-                        };
-                        sendRequest(dataListCast);
+                setTimeout(() => {
+                    if (list.length > 0) {
+                        let listItem = getClone(list[0]);
+                        sendRequest(listItem);
                     } else {
                         requestInterval();
                     }
-                }, 5000)
-            }
+                }, 4000);
+            };
             requestInterval();
         </script>
     </x-slot:after>
