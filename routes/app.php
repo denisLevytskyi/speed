@@ -11,8 +11,9 @@ Route::name('app.')->middleware(['auth', 'verified', 'is.guest'])->group(functio
     Route::resource('car', CarController::class);
     Route::resource('admin', AdminController::class);
     Route::resource('car-manufacturer', CarManufacturerController::class);
-    Route::resource('drive', DriveController::class);
     Route::resource('prop', PropController::class);
+    Route::resource('drive', DriveController::class);
+    Route::get('drive/{drive}/check', [DriveController::class, 'show'])->name('drive.show.check');
 });
 
 Route::get('terminal', [DriveListController::class, 'terminal'])->name('app.terminal');
