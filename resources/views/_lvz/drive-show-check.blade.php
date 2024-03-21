@@ -38,9 +38,9 @@
                 </p>
             </div>
             <div class="headerInfo">
-                <p class="headerInfoNum">
+                <a href="{{ route('app.drive.show', $drive->id) }}" class="headerInfoNum">
                     СКОРОСТЕМЕРНАЯ ЛЕНТА № {{ $drive->id }}
-                </p>
+                </a>
                 <p class="headerInfoP">
                     Начата: {{ $drive->created_at }}
                 </p>
@@ -67,7 +67,7 @@
                     -> ID: {{ $drive->user->id }}
                 </p>
                 <p class="mainItemP">
-                    -> Имя: {{ $drive->user->name }}
+                    -> ИМЯ: {{ $drive->user->name }}
                 </p>
                 <p class="mainItemP">
                     -> EMAIL: {{ $drive->user->email }}
@@ -85,6 +85,9 @@
                 </p>
                 <p class="mainItemP">
                     -> ПРОИЗВОДИТЕЛЬ: {{ $drive->car->manufacturer->mark }}
+                </p>
+                <p class="mainItemP">
+                    -> МОДЕЛЬ: {{ $drive->car->model }}
                 </p>
                 <p class="mainItemP">
                     -> ГОС НОМЕР: {{ $drive->car->number }}

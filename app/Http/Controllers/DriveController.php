@@ -8,6 +8,7 @@ use App\Http\Requests\StoreDriveRequest;
 use App\Http\Requests\UpdateDriveRequest;
 use App\Models\Prop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class DriveController extends Controller
 {
@@ -68,14 +69,19 @@ class DriveController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Prop $prop ,Drive $drive)
+    public function show(Prop $prop, Drive $drive)
     {
+        if (Route::currentRouteName() == 'app.drive.show.check') {
+            $view = '_lvz/drive-show-check';
+        } else {
+            $view = '_lvz/drive-show-map';
+        }
         if (Auth::user()->cannot('view', $drive)) {
             return redirect(route('app.drive.index'))->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        return view('_lvz/drive-show', ['drive' => $drive, 'prop' => $prop]);
+        return view($view, ['drive' => $drive, 'prop' => $prop]);
     }
 
     /**

@@ -110,6 +110,10 @@
                 } else if (!old) {
                     old = getClone(fresh);
                     return false;
+                } else if (old.speed === 0 && fresh.speed === 0) {
+                    old = getClone(fresh);
+                    packetsReceived.value = 'Ошибка "стоянка". Повтор...';
+                    return false;
                 } else {
                     old = getClone(fresh);
                     speedometer.value = Math.round(fresh.speed * 100) / 100;
@@ -180,7 +184,7 @@
                     delete(request);
                 };
                 request.ontimeout = () => {
-                    packetsSent.value = 'Таймаут, запрос отозван. Повтор...';
+                    packetsSent.value = 'Ошибка ожидания. Повтор...';
                     requestInterval();
                     delete(request);
                 };
