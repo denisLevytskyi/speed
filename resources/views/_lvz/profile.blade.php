@@ -5,6 +5,9 @@
     <x-slot:header_info>
         Профиль пользователя
     </x-slot:header_info>
+    <x-slot:style>
+        <link rel="stylesheet" href="{{ asset('css/lvz/profile.css') }}">
+    </x-slot:style>
     @method('patch')
     <x-l::form-input-error :messages="$errors->get('profileUpdateName')"/>
     <x-l::form-input name="profileUpdateName" type="text" placeholder="Email" :value="old('profileUpdateName', $user->name)"/>
@@ -52,11 +55,6 @@
             </div>
         </section>
         <section class="form">
-            <style>
-                .inactive {
-                    display: none;
-                }
-            </style>
             <div class="container">
                 <form action="" class="formForm" id="form1">
                     <p class="formFormP">

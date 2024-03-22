@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Лента №{{ $drive->id }}</title>
         <link rel="stylesheet" href="{{ asset('css/lvz/check.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/lvz/click.css') }}">
     </head>
     <body>
         <header class="header">
             <a href="{{ route('app.drive.index') }}" class="headerA">
-                <img src="{{ asset('images/main_logo.png') }}" class="headerAImg">
+                <img src="{{ asset('images/main_logo.png') }}" class="headerAImg" alt="logo">
             </a>
             <p class="headerP">
                 {{ $prop->getProp('org_name') }}
@@ -103,23 +104,23 @@
                 </p>
             </div>
             @foreach($drive->list as $list)
-                <div class="mainItem mainItemClick">
-                    <p class="mainItemP mainItemName mainItemNameClick">
+                <div class="mainItem clickParent">
+                    <p class="mainItemP mainItemName clickHeader">
                         {{ $list->created_at }} -> {{ $list->speed }} км/ч
                     </p>
-                    <p class="mainItemP c0">
+                    <p class="mainItemP clickItem">
                         -> № ПАКЕТА: {{ $list->id }}
                     </p>
-                    <p class="mainItemP c0">
+                    <p class="mainItemP clickItem">
                         -> ВРЕМЯ: {{ \Carbon\Carbon::createFromTimestamp($list->timestamp) }}
                     </p>
-                    <p class="mainItemP c0">
+                    <p class="mainItemP clickItem">
                         -> СМЕЩЕНИЕ: {{ $list->time }} сек
                     </p>
-                    <p class="mainItemP c0">
+                    <p class="mainItemP clickItem">
                         -> ШИРОТА: {{ $list->latitude }}
                     </p>
-                    <p class="mainItemP c0">
+                    <p class="mainItemP clickItem">
                         -> ДОЛГОТА: {{ $list->longitude }}
                     </p>
                 </div>
@@ -152,26 +153,6 @@
                 UNIKA Logistic
             </p>
         </footer>
-        <script>
-            // Получаем все элементы с классом "mainItemName"
-            const mainItemNames = document.querySelectorAll('.mainItemNameClick');
-
-            // Перебираем каждый элемент и назначаем обработчик события клика
-            mainItemNames.forEach(mainItemName => {
-                mainItemName.addEventListener('click', () => {
-                    // Находим ближайший родительский элемент с классом "mainItem"
-                    const mainItem = mainItemName.closest('.mainItem');
-
-                    // Получаем все дочерние элементы с классом "c0" внутри найденного родительского элемента
-                    const c0Elements = mainItem.querySelectorAll('.c0');
-
-                    // Перебираем каждый найденный элемент и изменяем его класс на "c1"
-                    c0Elements.forEach(c0Element => {
-                        // c0Element.classList.remove('c0');
-                        c0Element.classList.toggle('c1');
-                    });
-                });
-            });
-        </script>
+        <script src="{{ asset('script/click.js') }}"></script>
     </body>
 </html>

@@ -24,9 +24,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/_migration', function () {
-	$a = Artisan::call('migrate:fresh');
-	$b = Artisan::call('db:seed');
-	dd($a, $b);
+    $a = Artisan::call('migrate:fresh');
+    $b = Artisan::call('db:seed');
+    dd($a, $b);
 });
 
 Route::middleware('auth')->group(function () {
