@@ -1,0 +1,26 @@
+.mapMap {
+    width: 100%;
+    height: 520px;
+}
+
+.icon {
+    width: 2px;
+    height: 2px;
+    border: 1px solid #d32121;
+    background: #d32121;
+}
+
+.infoWrap {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.infoWrapItem {
+    margin: 0 5px;
+}
+
+.infoWrapItemSlash {
+    display: inline;
+}

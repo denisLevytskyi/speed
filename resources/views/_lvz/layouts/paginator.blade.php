@@ -1,30 +1,8 @@
 @if ($paginator->hasPages())
-    <style>
-        .listWrapPagination {
-            margin: 0 auto;
-            width: max-content;
-        }
-
-        .listWrapPagination li {
-            display: inline;
-        }
-
-        .active {
-            color: gray;
-            font-weight: 700;
-            cursor: default;
-            text-decoration: underline;
-        }
-
-        .disabled {
-            color: gray;
-            cursor: default;
-        }
-    </style>
     <ul class="listWrapPagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+            <li class="paginatorDisabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
                 <span aria-hidden="true"><</span>
             </li>
         @else
@@ -37,14 +15,14 @@
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled" aria-disabled="true"><span>{{ $element }}</span></li>
+                <li class="paginatorDisabled" aria-disabled="true"><span>{{ $element }}</span></li>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="active" aria-current="page"><span>{{ $page }}</span></li>
+                        <li class="paginatorActive" aria-current="page"><span>{{ $page }}</span></li>
                     @else
                         <li><a href="{{ $url }}">{{ $page }}</a></li>
                     @endif
@@ -58,10 +36,9 @@
                 <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">></a>
             </li>
         @else
-            <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+            <li class="paginatorDisabled" aria-disabled="true" aria-label="@lang('pagination.next')">
                 <span aria-hidden="true">></span>
             </li>
         @endif
     </ul>
-
 @endif

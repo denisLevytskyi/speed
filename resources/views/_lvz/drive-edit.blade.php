@@ -139,21 +139,16 @@
             let error = 0;
 
             const errorCheck = () => {
-                if (error > 5) {
+                if (error > 3) {
                     location.reload();
                 }
                 error ++;
             };
 
             const getValueFromUrl = () => {
-                // Получаем текущий URL страницы
-                let url = window.location.href;
-                // Используем метод split() для разделения строки по "/"
-                let parts = url.split("/");
-                // Извлекаем значение после "drive/"
-                let value = parts[parts.indexOf("drive") + 1];
-                // Возвращаем значение
-                return value;
+                let url = window.location.href; // Получаем текущий URL страницы
+                let parts = url.split("/"); // Используем метод split() для разделения строки по "/"
+                return parts[parts.indexOf("drive") + 1]; // Извлекаем значение после "drive/"
             };
 
             const getRequestText = (data) => {

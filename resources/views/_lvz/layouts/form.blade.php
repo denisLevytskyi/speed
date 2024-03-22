@@ -1,52 +1,20 @@
 <x-l-layout::main show-auth="no" show-status="no">
-    <style>
-        .formForm {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-            margin: auto;
-            background: white;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .formFormError {
-            background: #d32121;
-            text-align: center;
-            color: white;
-            margin-bottom: 2px;
-            padding: 2px;
-            border-radius: 10px;
-        }
-
-        .formFormStatus {
-            background: palegreen;
-            text-align: center;
-            margin-bottom: 2px;
-            padding: 2px;
-            border-radius: 10px;
-        }
-
-        .formFormA {
-            margin: 5px 0 auto auto;
-            cursor: pointer;
-        }
-
-        .formFormP {
-            margin-bottom: 5px;
-            text-align: justify;
-        }
-
-        .formFormBox * {
-            display: inline;
-        }
-    </style>
-    <x-slot:title>
-        {{ $title }}
-    </x-slot:title>
-    <x-slot:header_info>
-        {{ $header_info }}
-    </x-slot:header_info>
+    @isset($title)
+        <x-slot:title>
+            {{ $title }}
+        </x-slot:title>
+    @endisset
+    @isset($header_info)
+        <x-slot:header_info>
+            {{ $header_info }}
+        </x-slot:header_info>
+    @endisset
+    <x-slot:style>
+        <link rel="stylesheet" href="{{ asset('css/lvz/form.css') }}">
+        @isset($style)
+            {{ $style }}
+        @endisset
+    </x-slot:style>
     @isset($before)
         {{ $before }}
     @endisset

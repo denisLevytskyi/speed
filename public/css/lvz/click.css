@@ -1,0 +1,15 @@
+.clickParent {
+    /**/
+}
+
+.clickHeader {
+    cursor: pointer;
+}
+
+.clickItem {
+    display: none;
+}
+
+.clickItemActive {
+    display: block;
+}
