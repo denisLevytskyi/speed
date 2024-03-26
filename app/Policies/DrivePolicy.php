@@ -39,6 +39,12 @@ class DrivePolicy
         }
     }
 
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
     public function create(User $user) {
         if (Drive::where('user_id', $user->id)->where('status', FALSE)->exists()) {
             return FALSE;
@@ -47,12 +53,6 @@ class DrivePolicy
         }
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function store(User $user)
     {
         if (Drive::where('user_id', $user->id)->where('status', FALSE)->exists()) {

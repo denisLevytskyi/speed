@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Car;
+use App\Models\CarManufacturer;
 use App\Models\Drive;
+use App\Models\User;
+use App\Observers\CarManufacturerObserver;
+use App\Observers\CarObserver;
 use App\Observers\DriveObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
+        CarManufacturer::observe(CarManufacturerObserver::class);
+        Car::observe(CarObserver::class);
         Drive::observe(DriveObserver::class);
     }
 

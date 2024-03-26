@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\CarManufacturer;
 use App\Http\Requests\StoreCarManufacturerRequest;
 use App\Http\Requests\UpdateCarManufacturerRequest;
@@ -105,6 +106,11 @@ class CarManufacturerController extends Controller
         if ($request->user()->cannot('delete', $car_manufacturer)) {
             return back()->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
+            ]);
+        }
+        if ($this->haveChild(new Car(), 'manufacturer_id', $car_manufacturer->id)) {
+            return back()->withErrors([
+                'status' => 'У записи есть зависимые элементы'
             ]);
         }
         $result = $car_manufacturer->delete();

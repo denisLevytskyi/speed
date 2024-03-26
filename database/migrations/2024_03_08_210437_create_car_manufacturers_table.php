@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('car_manufacturers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('mark');
         });

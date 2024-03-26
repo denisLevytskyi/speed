@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Drive;
+use App\Models\DriveList;
 use App\Notifications\EndDrive;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,7 +39,8 @@ class DriveObserver
      */
     public function deleted(Drive $drive)
     {
-        //
+        $keys = DriveList::where('drive_id', '=', $drive->id)->get()->pluck('id');
+        DriveList::destroy($keys);
     }
 
     /**
