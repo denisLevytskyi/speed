@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('drive_lists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreignId('drive_id')->constrained('drives', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('timestamp')->nullable();
             $table->decimal('speed', 5, 2)->nullable();

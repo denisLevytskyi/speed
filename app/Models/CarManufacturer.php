@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CarManufacturer extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',

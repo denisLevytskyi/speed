@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DriveList extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'drive_id',

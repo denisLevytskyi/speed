@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('drives', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
             $table->boolean('status')->default(FALSE);
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('car_id')->constrained('cars', 'id')->cascadeOnDelete()->cascadeOnUpdate();
