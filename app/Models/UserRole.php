@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
-    use HasFactor, SoftDeletesy;
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
