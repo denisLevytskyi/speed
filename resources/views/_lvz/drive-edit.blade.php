@@ -166,11 +166,17 @@
                 request.timeout = 10000;
                 request.send();
                 request.onload = () => {
-                    if (request.status === 200 && request.responseText === '1') {
+                    if (request.status === 200 && request.responseText === '2') {
                         list.shift();
                         packetsSent.value = packetsSentVal;
                         packetsSentVal ++;
                         error = 0;
+                    } else if (request.status === 200 && request.responseText === '1') {
+                        packetsSent.value = 'Ошибка статсуса поездки. Повтор...';
+                        errorCheck();
+                    } else if (request.status === 200 && request.responseText === '0') {
+                        packetsSent.value = 'Ошибка записи. Повтор...';
+                        errorCheck();
                     } else {
                         packetsSent.value = 'Ошибка сервера. Повтор...';
                         errorCheck();
