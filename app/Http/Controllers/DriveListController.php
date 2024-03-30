@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DriveList;
+use App\Models\Drive;
 use App\Http\Requests\StoreDriveListRequest;
 use App\Http\Requests\UpdateDriveListRequest;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +12,14 @@ use Illuminate\Http\Request;
 class DriveListController extends Controller
 {
     public function terminal (Request $request) {
-        if (DriveList::create($request->all())) {
+        if (Drive::find($request->drive_id)->status) {
+            /* STATUS ERROR */
             echo 1;
+        } elseif (DriveList::create($request->all())) {
+            /* OK */
+            echo 2;
         } else {
+            /* WRITE ERROR */
             echo 0;
         }
     }
