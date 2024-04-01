@@ -29,7 +29,7 @@
         Показание одометра
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreateOdometer')"/>
-    <x-l::form-input name="driveCreateOdometer" type="number" min="0" max="100000" step="1" :value="old('driveCreateOdometer')"/>
+    <x-l::form-input name="driveCreateOdometer" type="number" :value="old('driveCreateOdometer')"/>
     <x-l::form-btn>
         Добавить
     </x-l::form-btn>
