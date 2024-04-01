@@ -88,14 +88,14 @@ class DriveController extends Controller
      * Show the form for editing the specified resource.
      *
      */
-    public function edit(Drive $drive)
+    public function edit(Prop $prop, Drive $drive)
     {
         if (Auth::user()->cannot('update', $drive)) {
             return redirect(route('app.drive.index'))->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
             ]);
         }
-        return view('_lvz/drive-edit', ['drive' => $drive]);
+        return view('_lvz/drive-edit', ['drive' => $drive, 'prop' => $prop]);
     }
 
     /**

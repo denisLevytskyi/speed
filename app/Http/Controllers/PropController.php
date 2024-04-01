@@ -39,14 +39,19 @@ class PropController extends Controller
             ])->withInput();
         }
         $data = [
-            ['key' => 'org_name', 'value' => $request->propEditOrgName],
-            ['key' => 'sub_name', 'value' => $request->propEditSubName],
-            ['key' => 'sub_address_1', 'value' => $request->propEditSubAddress1],
-            ['key' => 'sub_address_2', 'value' => $request->propEditSubAddress2],
-            ['key' => 'id', 'value' => $request->propEditId],
-            ['key' => 'pn', 'value' => $request->propEditPn],
-            ['key' => 'version', 'value' => $request->propEditVersion],
-            ['key' => 'assembly', 'value' => $request->propEditAssembly],
+            ['key' => 'show_org_name', 'value' => $request->propEditOrgName],
+            ['key' => 'show_sub_name', 'value' => $request->propEditSubName],
+            ['key' => 'show_sub_address_1', 'value' => $request->propEditSubAddress1],
+            ['key' => 'show_sub_address_2', 'value' => $request->propEditSubAddress2],
+            ['key' => 'show_id', 'value' => $request->propEditId],
+            ['key' => 'show_pn', 'value' => $request->propEditPn],
+            ['key' => 'show_version', 'value' => $request->propEditVersion],
+            ['key' => 'show_assembly', 'value' => $request->propEditAssembly],
+            ['key' => 'drive_speed', 'value' => $request->propEditSpeed],
+            ['key' => 'drive_get_time', 'value' => $request->propEditGetTime],
+            ['key' => 'drive_send_time', 'value' => $request->propEditSendTime],
+            ['key' => 'drive_timeout', 'value' => $request->propEditTimeout],
+            ['key' => 'drive_error', 'value' => $request->propEditError],
         ];
         if (Prop::upsert($data, ['key'], ['value'])) {
             return back()->with(['status' => 'Обновлено']);

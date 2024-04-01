@@ -32,6 +32,11 @@ class UpdatePropRequest extends FormRequest
             'propEditPn' => ['required', 'min:4', 'max:20'],
             'propEditVersion' => ['required', 'min:4', 'max:20'],
             'propEditAssembly' => ['required', 'min:4', 'max:20'],
+            'propEditSpeed' => ['required', 'integer', 'min:0', 'max:300'],
+            'propEditGetTime' => ['required', 'integer', 'min:1000', 'max:10000'],
+            'propEditSendTime' => ['required', 'integer', 'min:1000', 'max:10000'],
+            'propEditTimeout' => ['required', 'integer', 'min:3000', 'max:100000'],
+            'propEditError' => ['required', 'integer', 'min:0', 'max:5000'],
         ];
     }
 }

@@ -13,29 +13,29 @@
                 <img src="{{ asset('images/main_logo.png') }}" class="headerAImg" alt="logo">
             </a>
             <p class="headerP">
-                {{ $prop->getProp('org_name') }}
+                {{ $prop->getProp('show_org_name') }}
             </p>
             <p class="headerP">
-                {{ $prop->getProp('sub_name') }}
+                {{ $prop->getProp('show_sub_name') }}
             </p>
             <p class="headerP">
-                {{ $prop->getProp('sub_address_1') }}
+                {{ $prop->getProp('show_sub_address_1') }}
             </p>
             <p class="headerP">
-                {{ $prop->getProp('sub_address_2') }}
+                {{ $prop->getProp('show_sub_address_2') }}
             </p>
             <div class="headerProps">
                 <p class="headerPropsP">
-                    ІД {{ $prop->getProp('id') }}
+                    ИД {{ $prop->getProp('show_id') }}
                 </p>
                 <p class="headerPropsP">
-                    ПН {{ $prop->getProp('pn') }}
+                    ПН {{ $prop->getProp('show_pn') }}
                 </p>
                 <p class="headerPropsP">
-                    ВН {{ $prop->getProp('version') }}
+                    ВН {{ $prop->getProp('show_version') }}
                 </p>
                 <p class="headerPropsP">
-                    СН {{ $prop->getProp('assembly') }}
+                    СН {{ $prop->getProp('show_assembly') }}
                 </p>
             </div>
             <div class="headerInfo">

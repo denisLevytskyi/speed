@@ -52,6 +52,13 @@
                 return clone;
             };
 
+            /* Seating from PHP */
+            const x_maxSpeed = {{ $prop->getProp('drive_speed') ?: 99 }};
+            const x_get_time = {{ $prop->getProp('drive_get_time') ?: 5999 }};
+            const x_send_time = {{ $prop->getProp('drive_send_time') ?: 3999 }};
+            const x_timeout = {{ $prop->getProp('drive_timeout') ?: 9999 }};
+            const x_error = {{ $prop->getProp('drive_error') ?: 2 }};
+
             /* Get location data */
             const speedometer = document.getElementById('speedometer');
             const packetsReceived = document.getElementById('packetsReceived');
@@ -103,9 +110,9 @@
                 }
 
                 geo = false;
-                if (fresh.speed >= 100) {
+                if (fresh.speed >= x_maxSpeed) {
                     old = false;
-                    packetsReceived.value = 'Ошибка получения [100+]. Повтор...';
+                    packetsReceived.value = 'Ошибка получения [' + x_maxSpeed + '+]. Повтор...';
                     return false;
                 } else if (!old) {
                     old = getClone(fresh);
@@ -129,7 +136,7 @@
                     if (data) {
                         list.push(data);
                     }
-                }, 6000);
+                }, x_get_time);
             };
             geoInterval();
 
@@ -139,7 +146,7 @@
             let error = 0;
 
             const errorCheck = () => {
-                if (error > 3) {
+                if (error > x_error && x_error !== 0) {
                     location.reload();
                 }
                 error ++;
@@ -163,7 +170,7 @@
                 const request = new XMLHttpRequest();
                 request.open('GET', '{{ route('app.terminal') }}' + getRequestText(data), true);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                request.timeout = 10000;
+                request.timeout = x_timeout;
                 request.send();
                 request.onload = () => {
                     if (request.status === 200 && request.responseText === '2') {
@@ -204,7 +211,7 @@
                     } else {
                         requestInterval();
                     }
-                }, 4000);
+                }, x_send_time);
             };
             requestInterval();
         </script>
