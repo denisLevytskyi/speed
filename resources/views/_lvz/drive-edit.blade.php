@@ -53,11 +53,12 @@
             };
 
             /* Seating from PHP */
-            const x_maxSpeed = {{ $prop->getProp('drive_speed') ?: 99 }};
+            const x_min_speed = {{ $prop->getProp('drive_min_speed') ?: 0 }};
+            const x_max_speed = {{ $prop->getProp('drive_max_speed') ?: 99 }};
             const x_get_time = {{ $prop->getProp('drive_get_time') ?: 5999 }};
             const x_send_time = {{ $prop->getProp('drive_send_time') ?: 3999 }};
             const x_timeout = {{ $prop->getProp('drive_timeout') ?: 9999 }};
-            const x_error = {{ $prop->getProp('drive_error') ?: 2 }};
+            const x_error = {{ $prop->getProp('drive_error') ?: 0 }};
 
             /* Get location data */
             const speedometer = document.getElementById('speedometer');
@@ -110,16 +111,16 @@
                 }
 
                 geo = false;
-                if (fresh.speed >= x_maxSpeed) {
+                if (fresh.speed >= x_max_speed) {
                     old = false;
-                    packetsReceived.value = 'Ошибка получения [' + x_maxSpeed + '+]. Повтор...';
+                    packetsReceived.value = 'Ошибка получения [+' + x_max_speed + ']. Повтор...';
                     return false;
                 } else if (!old) {
                     old = getClone(fresh);
                     return false;
-                } else if (old.speed === 0 && fresh.speed === 0) {
+                } else if (old.speed <= x_min_speed && fresh.speed <= x_min_speed) {
                     old = getClone(fresh);
-                    packetsReceived.value = 'Ошибка "стоянка". Повтор...';
+                    packetsReceived.value = 'Ошибка получения [-' + x_min_speed + ']. Повтор...';
                     return false;
                 } else {
                     old = getClone(fresh);
@@ -146,10 +147,10 @@
             let error = 0;
 
             const errorCheck = () => {
+                error ++;
                 if (error >= x_error && x_error !== 0) {
                     location.reload();
                 }
-                error ++;
             };
 
             const getValueFromUrl = () => {

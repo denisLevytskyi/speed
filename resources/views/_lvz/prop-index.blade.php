@@ -6,7 +6,9 @@
         Обновление свойств
     </x-slot:header_info>
     <p class="formFormP">
-        ОТОБРАЖЕНИЕ
+        <strong>
+            ОТОБРАЖЕНИЕ
+        </strong>
     </p>
     <p class="formFormP">
         Название организации
@@ -50,13 +52,20 @@
     <x-l::form-input name="propEditAssembly" type="text" :value="old('propEditAssembly', $prop->getProp('show_assembly'))"/>
     <br>
     <p class="formFormP">
-        ЗАПИСЬ
+        <strong>
+            ЗАПИСЬ
+        </strong>
     </p>
+    <p class="formFormP">
+        Минимальная скорость, км/ч
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propEditMinSpeed')"/>
+    <x-l::form-input name="propEditMinSpeed" type="number" :value="old('propEditMinSpeed', $prop->getProp('drive_min_speed'))"/>
     <p class="formFormP">
         Максимальная скорость, км/ч
     </p>
-    <x-l::form-input-error :messages="$errors->get('propEditSpeed')"/>
-    <x-l::form-input name="propEditSpeed" type="number" :value="old('propEditSpeed', $prop->getProp('drive_speed'))"/>
+    <x-l::form-input-error :messages="$errors->get('propEditMaxSpeed')"/>
+    <x-l::form-input name="propEditMaxSpeed" type="number" :value="old('propEditMaxSpeed', $prop->getProp('drive_max_speed'))"/>
     <p class="formFormP">
         Интервал получения пакета, мс
     </p>
