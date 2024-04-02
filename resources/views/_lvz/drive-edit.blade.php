@@ -146,7 +146,7 @@
             let error = 0;
 
             const errorCheck = () => {
-                if (error > x_error && x_error !== 0) {
+                if (error >= x_error && x_error !== 0) {
                     location.reload();
                 }
                 error ++;
