@@ -36,10 +36,10 @@
     <x-l::form-input-error :messages="$errors->get('propEditId')"/>
     <x-l::form-input name="propEditId" type="text" :value="old('propEditId', $prop->getProp('show_id'))"/>
     <p class="formFormP">
-        ПН
+        НН
     </p>
-    <x-l::form-input-error :messages="$errors->get('propEditPn')"/>
-    <x-l::form-input name="propEditPn" type="text" :value="old('propEditPn', $prop->getProp('show_pn'))"/>
+    <x-l::form-input-error :messages="$errors->get('propEditNn')"/>
+    <x-l::form-input name="propEditNn" type="text" :value="old('propEditNn', $prop->getProp('show_nn'))"/>
     <p class="formFormP">
         Версия ПО
     </p>

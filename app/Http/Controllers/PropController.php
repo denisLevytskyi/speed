@@ -44,7 +44,7 @@ class PropController extends Controller
             ['key' => 'show_sub_address_1', 'value' => $request->propEditSubAddress1],
             ['key' => 'show_sub_address_2', 'value' => $request->propEditSubAddress2],
             ['key' => 'show_id', 'value' => $request->propEditId],
-            ['key' => 'show_pn', 'value' => $request->propEditPn],
+            ['key' => 'show_nn', 'value' => $request->propEditNn],
             ['key' => 'show_version', 'value' => $request->propEditVersion],
             ['key' => 'show_assembly', 'value' => $request->propEditAssembly],
             ['key' => 'drive_min_speed', 'value' => $request->propEditMinSpeed],

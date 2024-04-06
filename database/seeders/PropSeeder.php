@@ -21,7 +21,7 @@ class PropSeeder extends Seeder
             ['key' => 'show_sub_address_1', 'value' => 'Україна, Волинська обл., м. Луцьк,'],
             ['key' => 'show_sub_address_2', 'value' => 'пр. Волі, буд. 22'],
             ['key' => 'show_id', 'value' => '40720198'],
-            ['key' => 'show_pn', 'value' => '407201926538'],
+            ['key' => 'show_nn', 'value' => '407201926538'],
             ['key' => 'show_version', 'value' => '1/001'],
             ['key' => 'show_assembly', 'value' => '170324'],
             ['key' => 'drive_min_speed', 'value' => '0'],
