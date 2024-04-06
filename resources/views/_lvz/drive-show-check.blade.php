@@ -29,7 +29,7 @@
                     ИД {{ $prop->getProp('show_id') }}
                 </p>
                 <p class="headerPropsP">
-                    ПН {{ $prop->getProp('show_pn') }}
+                    НН {{ $prop->getProp('show_nn') }}
                 </p>
                 <p class="headerPropsP">
                     ВН {{ $prop->getProp('show_version') }}

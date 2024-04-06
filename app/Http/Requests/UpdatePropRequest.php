@@ -29,7 +29,7 @@ class UpdatePropRequest extends FormRequest
             'propEditSubAddress1' => ['required', 'min:4', 'max:40'],
             'propEditSubAddress2' => ['required', 'min:4', 'max:40'],
             'propEditId' => ['required', 'min:4', 'max:20'],
-            'propEditPn' => ['required', 'min:4', 'max:20'],
+            'propEditNn' => ['required', 'min:4', 'max:20'],
             'propEditVersion' => ['required', 'min:4', 'max:20'],
             'propEditAssembly' => ['required', 'min:4', 'max:20'],
             'propEditMinSpeed' => ['required', 'integer', 'min:-1', 'max:300'],
