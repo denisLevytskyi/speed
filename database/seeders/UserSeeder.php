@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
     {
         $data = [
             'name' => 'ADMIN',
-            'email' => 'er9p21873@gmail.com',
+            'email' => 'admin@admin.com',
             'email_verified_at' => Carbon::now()->timestamp,
             'password' => \Hash::make('12345678'),
         ];
