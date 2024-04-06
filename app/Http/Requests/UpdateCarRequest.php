@@ -29,7 +29,7 @@ class UpdateCarRequest extends FormRequest
             'carEditNumber' => ['required', 'min:4', 'max:10'],
             'carEditColor' => ['required', 'min:4', 'max:20'],
             'carEditFuel' => 'required',
-            'carEditYear' => ['required', 'numeric']
+            'carEditYear' => ['required', 'numeric', 'min:1900', 'max:2030']
         ];
     }
 }

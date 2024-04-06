@@ -13,7 +13,7 @@
         Производитель
     </p>
     <x-l::form-input-error :messages="$errors->get('carManufacturerEditMark')"/>
-    <x-l::form-input name="carManufacturerEditMark" type="text" :value="$car_manufacturer->mark"/>
+    <x-l::form-input name="carManufacturerEditMark" type="text" :value="old('carManufacturerEditMark', $car_manufacturer->mark)"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>

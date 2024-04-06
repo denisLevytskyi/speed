@@ -25,13 +25,13 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('adminCreatePassword_confirmation')"/>
     <x-l::form-input name="adminCreatePassword_confirmation" type="text" :value="old('adminCreatePassword_confirmation')"/>
-    <x-l::form-input-check name="adminCreateAdmin">
+    <x-l::form-input-check name="adminCreateAdmin" :checked="(bool) old('adminCreateAdmin')">
         Администратор
     </x-l::form-input-check>
-    <x-l::form-input-check name="adminCreateUser">
+    <x-l::form-input-check name="adminCreateUser" :checked="(bool) old('adminCreateUser')">
         Пользователь
     </x-l::form-input-check>
-    <x-l::form-input-check name="adminCreateGuest">
+    <x-l::form-input-check name="adminCreateGuest" :checked="(bool) old('adminCreateGuest')">
         Гость
     </x-l::form-input-check>
     <x-l::form-btn>
