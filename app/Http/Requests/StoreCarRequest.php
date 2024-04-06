@@ -29,7 +29,7 @@ class StoreCarRequest extends FormRequest
             'carCreateNumber' => ['required', 'min:4', 'max:10'],
             'carCreateColor' => ['required', 'min:4', 'max:20'],
             'carCreateFuel' => 'required',
-            'carCreateYear' => ['required', 'numeric']
+            'carCreateYear' => ['required', 'numeric', 'min:1900', 'max:2030']
         ];
     }
 }

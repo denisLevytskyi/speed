@@ -16,38 +16,39 @@
     <x-l::form-select name="carEditManufacturerId">
         <option value=""></option>
         @foreach($manufacturers as $manufacturer)
-            <option value="{{ $manufacturer->id }}" {{ !($manufacturer->id == $car->manufacturer_id) ?: 'selected' }}>{{ $manufacturer->mark }}</option>
+            <option value="{{ $manufacturer->id }}" {{ $manufacturer->id == old('carEditManufacturerId', $car->manufacturer_id) ? 'selected' : '' }}>{{ $manufacturer->mark }}</option>
         @endforeach
     </x-l::form-select>
     <p class="formFormP">
         Модель
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditModel')"/>
-    <x-l::form-input name="carEditModel" type="text" :value="$car->model"/>
+    <x-l::form-input name="carEditModel" type="text" :value="old('carEditModel', $car->model)"/>
     <p class="formFormP">
         Государственный номер
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditNumber')"/>
-    <x-l::form-input name="carEditNumber" type="text" :value="$car->number"/>
+    <x-l::form-input name="carEditNumber" type="text" :value="old('carEditNumber', $car->number)"/>
     <p class="formFormP">
         Цвет
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditColor')"/>
-    <x-l::form-input name="carEditColor" type="text" :value="$car->color"/>
+    <x-l::form-input name="carEditColor" type="text" :value="old('carEditColor', $car->color)"/>
     <p class="formFormP">
         Топливо
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditFuel')"/>
     <x-l::form-select name="carEditFuel">
-        <option value="Газ" {{ $car->fuel == 'Газ' ? 'selected' : '' }}>Газ</option>
-        <option value="Бензин" {{ $car->fuel == 'Бензин' ? 'selected' : '' }}>Бензин</option>
-        <option value="Дизель" {{ $car->fuel == 'Дизель' ? 'selected' : '' }}>Дизель</option>
+        <option value=""></option>
+        <option value="Газ" {{ old('carEditFuel', $car->fuel) == 'Газ' ? 'selected' : '' }}>Газ</option>
+        <option value="Бензин" {{ old('carEditFuel', $car->fuel) == 'Бензин' ? 'selected' : '' }}>Бензин</option>
+        <option value="Дизель" {{ old('carEditFuel', $car->fuel) == 'Дизель' ? 'selected' : '' }}>Дизель</option>
     </x-l::form-select>
     <p class="formFormP">
         Год выпуска
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditYear')"/>
-    <x-l::form-input name="carEditYear" type="number" min="1900" max="2030" step="1" :value="$car->year"/>
+    <x-l::form-input name="carEditYear" type="number" step="1" :value="old('carEditYear', $car->year)"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
