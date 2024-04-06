@@ -50,7 +50,7 @@ class CarManufacturerController extends Controller
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
-            ]);
+            ])->withInput();
         }
     }
 
@@ -83,7 +83,7 @@ class CarManufacturerController extends Controller
         if ($request->user()->cannot('update', $car_manufacturer)) {
             return back()->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
-            ]);
+            ])->withInput();
         }
         $data = [
             'mark' => $request->carManufacturerEditMark
@@ -93,7 +93,7 @@ class CarManufacturerController extends Controller
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
-            ]);
+            ])->withInput();
         }
     }
 

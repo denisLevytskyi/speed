@@ -59,7 +59,7 @@ class PropController extends Controller
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
-            ]);
+            ])->withInput();
         }
     }
 

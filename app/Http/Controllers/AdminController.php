@@ -71,7 +71,7 @@ class AdminController extends Controller
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
-            ]);
+            ])->withInput();
         }
     }
 
@@ -109,7 +109,7 @@ class AdminController extends Controller
         if ($request->user()->cannot('update', User::class)) {
             return back()->withErrors([
                 'status' => 'Вы не можете выполнить данное действие!'
-            ]);
+            ])->withInput();
         }
         $data = [
             'name' => $request->adminEditName,
@@ -142,7 +142,7 @@ class AdminController extends Controller
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
-            ]);
+            ])->withInput();
         }
     }
 
