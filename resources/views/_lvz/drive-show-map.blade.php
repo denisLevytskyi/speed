@@ -98,7 +98,7 @@
         let packetCoords = [];
 
         /* ADD MAP */
-        let map = L.map('map').setView([packets[0].latitude, packets[0].longitude], 16);
+        let map = L.map('map').setView([packets[0].latitude, packets[0].longitude], 15);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
