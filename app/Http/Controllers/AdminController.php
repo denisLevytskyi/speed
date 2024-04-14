@@ -52,6 +52,12 @@ class AdminController extends Controller
             if ($request->boolean('adminCreateAdmin')) {
                 UserRole::create([
                     'user_id' => $user->id,
+                    'role_id' => 4
+                ]);
+            }
+            if ($request->boolean('adminCreateWatcher')) {
+                UserRole::create([
+                    'user_id' => $user->id,
                     'role_id' => 3
                 ]);
             }
@@ -94,6 +100,7 @@ class AdminController extends Controller
     {
         $roles = [
             'admin' => $admin->isAdministrator(),
+            'watcher' => $admin->isWatcher(),
             'user' => $admin->isUser(),
             'guest' => $admin->isGuest()
         ];
@@ -121,6 +128,12 @@ class AdminController extends Controller
         if ($admin->update($data)) {
             UserRole::where('user_id', $admin->id)->delete();
             if ($request->boolean('adminEditAdmin')) {
+                UserRole::create([
+                    'user_id' => $admin->id,
+                    'role_id' => 4
+                ]);
+            }
+            if ($request->boolean('adminEditWatcher')) {
                 UserRole::create([
                     'user_id' => $admin->id,
                     'role_id' => 3

@@ -23,6 +23,11 @@
                 <a href="{{ route('app.drive.index') }}" class="linksWrapperA">
                     Поездки
                 </a>
+                @if(Auth::user()->isWatcher())
+                    <a href="{{ route('app.watch') }}" class="linksWrapperA">
+                        Наблюдение
+                    </a>
+                @endif
                 @if(Auth::user()->isAdministrator())
                     <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
                         Пользователи

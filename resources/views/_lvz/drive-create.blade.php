@@ -65,7 +65,7 @@
                 point1.setAttribute('disabled', 'disabled');
                 point2.classList.remove('inactive');
                 point2.removeAttribute('disabled');
-            }
+            };
 
             pointA1.addEventListener('input', () => {
                 if (pointA1.value === 'else') {

@@ -30,6 +30,9 @@ class PropSeeder extends Seeder
             ['key' => 'drive_send_time', 'value' => '4000'],
             ['key' => 'drive_timeout', 'value' => '10000'],
             ['key' => 'drive_error', 'value' => '3'],
+            ['key' => 'watch_latitude', 'value' => '50.757585195824504'],
+            ['key' => 'watch_longitude', 'value' => '25.349317509680986'],
+            ['key' => 'watch_time', 'value' => '5000'],
         ];
         Prop::upsert($data, ['key'], ['value']);
     }

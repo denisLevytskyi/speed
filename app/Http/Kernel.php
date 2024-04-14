@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\IsAdministrator;
 use App\Http\Middleware\IsGuest;
+use App\Http\Middleware\IsWatcher;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'is.guest' => IsGuest::class,
         'is.admin' => IsAdministrator::class,
+        'is.watcher' => IsWatcher::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

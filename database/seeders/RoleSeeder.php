@@ -17,18 +17,22 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $data = [
-          [
-              'id' => 1,
-              'role' => 'GUEST'
-          ],
-          [
-              'id' => 2,
-              'role' => 'USER'
-          ],
-          [
-              'id' => 3,
-              'role' => 'ADMIN'
-          ]
+            [
+                'id' => 1,
+                'role' => 'GUEST'
+            ],
+            [
+                'id' => 2,
+                'role' => 'USER'
+            ],
+            [
+                'id' => 3,
+                'role' => 'WATCHER'
+            ],
+            [
+                'id' => 4,
+                'role' => 'ADMIN'
+            ]
         ];
         foreach ($data as $value) {
             Role::create($value);

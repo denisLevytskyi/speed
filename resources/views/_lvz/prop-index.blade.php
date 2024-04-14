@@ -86,6 +86,26 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('propEditError')"/>
     <x-l::form-input name="propEditError" type="number" :value="old('propEditError', $prop->getProp('drive_error'))"/>
+    <p class="formFormP">
+        <strong>
+            НАБЛЮДЕНИЕ
+        </strong>
+    </p>
+    <p class="formFormP">
+        Начальная широта
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propWatchLatitude')"/>
+    <x-l::form-input name="propWatchLatitude" type="number" step="0.000000000000001" :value="old('propWatchLatitude', $prop->getProp('watch_latitude'))"/>
+    <p class="formFormP">
+        Начальная долгота
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propWatchLongitude')"/>
+    <x-l::form-input name="propWatchLongitude" type="number" step="0.000000000000001" :value="old('propWatchLongitude', $prop->getProp('watch_longitude'))"/>
+    <p class="formFormP">
+        Интервал обновления, мс
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propWatchTime')"/>
+    <x-l::form-input name="propWatchTime" type="number" :value="old('propWatchTime', $prop->getProp('watch_time'))"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
