@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsGuest
+class IsAdministrator
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class IsGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() and $request->user()->isGuest()) {
+        if ($request->user() and $request->user()->isAdministrator()) {
             return $next($request);
         } else {
             return redirect('/')->withErrors([
-                'status' => 'Вы временно лишены права входа'
+                'status' => 'Вы не администратор'
             ]);
         }
     }

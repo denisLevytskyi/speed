@@ -35,7 +35,7 @@ class CarController extends Controller
     {
         if ($request->user()->cannot('create', Car::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -48,7 +48,7 @@ class CarController extends Controller
             'year' => $request->carCreateYear
         ];
         if (Car::create($data)) {
-            return redirect(route('app.car.index'))->with(['status' => 'Запись успешно добавлена']);
+            return to_route('app.car.index')->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
@@ -88,7 +88,7 @@ class CarController extends Controller
     {
         if ($request->user()->cannot('update', $car)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -117,7 +117,7 @@ class CarController extends Controller
     {
         if ($request->user()->cannot('delete', $car)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         if ($this->haveChild(new Drive(), 'car_id', $car->id)) {
@@ -127,7 +127,7 @@ class CarController extends Controller
         }
         $result = $car->delete();
         if ($result) {
-            return redirect(route('app.car.index'))->with(['status' => 'Запись успешно удалена']);
+            return to_route('app.car.index')->with(['status' => 'Запись успешно удалена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'

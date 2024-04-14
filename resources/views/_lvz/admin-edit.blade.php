@@ -29,6 +29,9 @@
     <x-l::form-input-check name="adminEditAdmin" :checked="old('adminEditAdmin', $roles['admin'])">
         Администратор
     </x-l::form-input-check>
+    <x-l::form-input-check name="adminEditWatcher" :checked="old('adminEditWatcher', $roles['watcher'])">
+        Наблюдатель
+    </x-l::form-input-check>
     <x-l::form-input-check name="adminEditUser" :checked="old('adminEditUser', $roles['user'])">
         Пользователь
     </x-l::form-input-check>

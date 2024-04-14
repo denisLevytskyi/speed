@@ -169,7 +169,7 @@
 
             const sendRequest = (data) => {
                 const request = new XMLHttpRequest();
-                request.open('GET', '{{ route('app.terminal') }}' + getRequestText(data), true);
+                request.open('GET', '{{ route('app.terminal.write') }}' + getRequestText(data), true);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 request.timeout = x_timeout;
                 request.send();

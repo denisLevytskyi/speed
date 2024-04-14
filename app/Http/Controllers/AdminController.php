@@ -39,7 +39,7 @@ class AdminController extends Controller
     {
         if ($request->user()->cannot('create', User::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -50,6 +50,12 @@ class AdminController extends Controller
         ];
         if ($user = User::create($data)) {
             if ($request->boolean('adminCreateAdmin')) {
+                UserRole::create([
+                    'user_id' => $user->id,
+                    'role_id' => 4
+                ]);
+            }
+            if ($request->boolean('adminCreateWatcher')) {
                 UserRole::create([
                     'user_id' => $user->id,
                     'role_id' => 3
@@ -67,7 +73,7 @@ class AdminController extends Controller
                     'role_id' => 1
                 ]);
             }
-            return redirect(route('app.admin.index'))->with(['status' => 'Запись успешно добавлена']);
+            return to_route('app.admin.index')->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
@@ -94,6 +100,7 @@ class AdminController extends Controller
     {
         $roles = [
             'admin' => $admin->isAdministrator(),
+            'watcher' => $admin->isWatcher(),
             'user' => $admin->isUser(),
             'guest' => $admin->isGuest()
         ];
@@ -108,7 +115,7 @@ class AdminController extends Controller
     {
         if ($request->user()->cannot('update', User::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -121,6 +128,12 @@ class AdminController extends Controller
         if ($admin->update($data)) {
             UserRole::where('user_id', $admin->id)->delete();
             if ($request->boolean('adminEditAdmin')) {
+                UserRole::create([
+                    'user_id' => $admin->id,
+                    'role_id' => 4
+                ]);
+            }
+            if ($request->boolean('adminEditWatcher')) {
                 UserRole::create([
                     'user_id' => $admin->id,
                     'role_id' => 3
@@ -154,12 +167,12 @@ class AdminController extends Controller
     {
         if ($request->user()->cannot('delete', $admin)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         $result = $admin->delete();
         if ($result) {
-            return redirect(route('app.admin.index'))->with(['status' => 'Запись успешно удалена']);
+            return to_route('app.admin.index')->with(['status' => 'Запись успешно удалена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'

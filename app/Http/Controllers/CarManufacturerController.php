@@ -38,7 +38,7 @@ class CarManufacturerController extends Controller
     {
         if ($request->user()->cannot('create', CarManufacturer::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -46,7 +46,7 @@ class CarManufacturerController extends Controller
             'mark' => $request->carManufacturerCreateMark
         ];
         if (CarManufacturer::create($data)) {
-            return redirect(route('app.car-manufacturer.index'))->with(['status' => 'Запись успешно добавлена']);
+            return to_route('app.car-manufacturer.index')->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
@@ -82,7 +82,7 @@ class CarManufacturerController extends Controller
     {
         if ($request->user()->cannot('update', $car_manufacturer)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -105,7 +105,7 @@ class CarManufacturerController extends Controller
     {
         if ($request->user()->cannot('delete', $car_manufacturer)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         if ($this->haveChild(new Car(), 'manufacturer_id', $car_manufacturer->id)) {
@@ -115,7 +115,7 @@ class CarManufacturerController extends Controller
         }
         $result = $car_manufacturer->delete();
         if ($result) {
-            return redirect(route('app.car-manufacturer.index'))->with(['status' => 'Запись успешно удалена']);
+            return to_route('app.car-manufacturer.index')->with(['status' => 'Запись успешно удалена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
