@@ -7,6 +7,7 @@ use App\Models\Drive;
 use App\Http\Requests\StoreDriveRequest;
 use App\Http\Requests\UpdateDriveRequest;
 use App\Models\Prop;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,15 +28,18 @@ class DriveController extends Controller
      * Show the form for creating a new resource.
      *
      */
-    public function create()
+    public function create(Request $request)
     {
-        if (Auth::user()->cannot('create', Drive::class)) {
-            return redirect(route('app.drive.index'))->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+        if ($request->user()->cannot('create', Drive::class)) {
+            return to_route('app.drive.index')->withErrors([
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         $cars = Car::all();
-        return view('_lvz/drive-create', ['cars' => $cars]);
+        $points = Drive::select(['point_a', 'point_b'])->where('user_id', '=', Auth::user()->id)->get();
+        $points = $points->pluck('point_a')->merge($points->pluck('point_b'));
+        $points = $points->merge(old('driveCreatePointA'))->merge(old('driveCreatePointB'))->unique();
+        return view('_lvz/drive-create', ['cars' => $cars, 'points' => $points]);
     }
 
     /**
@@ -46,7 +50,7 @@ class DriveController extends Controller
     {
         if ($request->user()->cannot('store', Drive::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [
@@ -57,7 +61,7 @@ class DriveController extends Controller
             'odometer' => $request->driveCreateOdometer,
         ];
         if (Drive::create($data)) {
-            return redirect(route('app.drive.index'))->with(['status' => 'Запись успешно добавлена']);
+            return to_route('app.drive.index')->with(['status' => 'Запись успешно добавлена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'
@@ -69,16 +73,16 @@ class DriveController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Prop $prop, Drive $drive)
+    public function show(Request $request, Prop $prop, Drive $drive)
     {
         if (Route::currentRouteName() == 'app.drive.show.check') {
             $view = '_lvz/drive-show-check';
         } else {
             $view = '_lvz/drive-show-map';
         }
-        if (Auth::user()->cannot('view', $drive)) {
-            return redirect(route('app.drive.index'))->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+        if ($request->user()->cannot('view', $drive)) {
+            return to_route('app.drive.index')->withErrors([
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         return view($view, ['drive' => $drive, 'prop' => $prop]);
@@ -88,11 +92,11 @@ class DriveController extends Controller
      * Show the form for editing the specified resource.
      *
      */
-    public function edit(Prop $prop, Drive $drive)
+    public function edit(Request $request, Prop $prop, Drive $drive)
     {
-        if (Auth::user()->cannot('update', $drive)) {
-            return redirect(route('app.drive.index'))->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+        if ($request->user()->cannot('update', $drive)) {
+            return to_route('app.drive.index')->withErrors([
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         return view('_lvz/drive-edit', ['drive' => $drive, 'prop' => $prop]);
@@ -106,7 +110,7 @@ class DriveController extends Controller
     {
         if ($request->user()->cannot('update', $drive)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
         if (!$drive->hasData())  {
@@ -114,7 +118,7 @@ class DriveController extends Controller
                'status' => 'Для завершения нужно хотя-бы одна запись'
             ]);
         } elseif ($drive->update(['status' => TRUE])) {
-            return redirect(route('app.drive.index'))->with(['status' => 'Поездка завершена']);
+            return to_route('app.drive.index')->with(['status' => 'Поездка завершена']);
         } else {
             return back()->withErrors([
                 'status' => 'Ошибка внесения данных в БД'

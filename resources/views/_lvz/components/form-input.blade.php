@@ -1,1 +1,1 @@
-<input {{ $attributes }} class="formFormInput">
+<input {{ $attributes->merge(['class' => 'formFormInput']) }}>

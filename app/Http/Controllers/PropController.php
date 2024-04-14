@@ -35,7 +35,7 @@ class PropController extends Controller
     {
         if ($request->user()->cannot('create', Prop::class)) {
             return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие!'
+                'status' => 'Вы не можете выполнить данное действие'
             ])->withInput();
         }
         $data = [

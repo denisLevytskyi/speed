@@ -23,12 +23,14 @@
                 <a href="{{ route('app.drive.index') }}" class="linksWrapperA">
                     Поездки
                 </a>
-                <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
-                    Пользователи
-                </a>
-                <a href="{{ route('app.prop.index') }}" class="linksWrapperA">
-                    Свойства
-                </a>
+                @if(Auth::user()->isAdministrator())
+                    <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
+                        Пользователи
+                    </a>
+                    <a href="{{ route('app.prop.index') }}" class="linksWrapperA">
+                        Свойства
+                    </a>
+                @endif
             </div>
         </div>
     </section>
