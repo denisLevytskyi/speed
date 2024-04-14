@@ -33,11 +33,6 @@ class PropController extends Controller
      */
     public function store(UpdatePropRequest $request)
     {
-        if ($request->user()->cannot('create', Prop::class)) {
-            return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие'
-            ])->withInput();
-        }
         $data = [
             ['key' => 'show_org_name', 'value' => $request->propEditOrgName],
             ['key' => 'show_sub_name', 'value' => $request->propEditSubName],

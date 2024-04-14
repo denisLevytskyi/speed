@@ -41,11 +41,7 @@ class PropPolicy
      */
     public function create(User $user)
     {
-        if ($user->isAdministrator()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        //
     }
 
     /**

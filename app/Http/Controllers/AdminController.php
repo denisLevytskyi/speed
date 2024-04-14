@@ -37,11 +37,6 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request)
     {
-        if ($request->user()->cannot('create', User::class)) {
-            return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие'
-            ])->withInput();
-        }
         $data = [
             'name' => $request->adminCreateName,
             'email' => $request->adminCreateEmail,
@@ -113,11 +108,6 @@ class AdminController extends Controller
      */
     public function update(UpdateAdminRequest $request, User $admin)
     {
-        if ($request->user()->cannot('update', User::class)) {
-            return back()->withErrors([
-                'status' => 'Вы не можете выполнить данное действие'
-            ])->withInput();
-        }
         $data = [
             'name' => $request->adminEditName,
             'email' => $request->adminEditEmail
