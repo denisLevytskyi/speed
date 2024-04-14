@@ -19,23 +19,6 @@ class AdminPolicy
         //
     }
 
-    public function create(User $user)
-    {
-        if ($user->isAdministrator()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
-
-    public function update(User $user) {
-        if ($user->isAdministrator()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
-
     public function delete(User $user, User $current) {
         if ($user->isAdministrator() and !$current->isAdministrator()) {
             return TRUE;
