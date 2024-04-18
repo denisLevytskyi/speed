@@ -86,6 +86,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('propEditError')"/>
     <x-l::form-input name="propEditError" type="number" :value="old('propEditError', $prop->getProp('drive_error'))"/>
+    <br>
     <p class="formFormP">
         <strong>
             НАБЛЮДЕНИЕ
