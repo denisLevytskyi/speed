@@ -44,9 +44,7 @@ class DriveController extends Controller
             ]);
         }
         $cars = Car::all();
-        $points = Drive::select(['point_a', 'point_b'])->where('user_id', '=', Auth::user()->id)->get();
-        $points = $points->pluck('point_a')->merge($points->pluck('point_b'));
-        $points = $points->merge(old('driveCreatePointA'))->merge(old('driveCreatePointB'))->unique();
+        $points = Drive::select('point_b')->where('user_id', '=', Auth::user()->id)->orderByDesc('id')->get()->pluck('point_b')->unique();
         return view('_lvz/drive-create', ['cars' => $cars, 'points' => $points]);
     }
 

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class DriveListController extends Controller
 {
     public function terminal (Request $request) {
-        if (Drive::find($request->drive_id)->status) {
+        if (!$drive = Drive::find($request->drive_id) or $drive->status) {
             /* STATUS ERROR */
             echo 1;
         } elseif (DriveList::create($request->all())) {

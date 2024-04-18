@@ -32,10 +32,8 @@
         let packetText;
         let driveText;
 
-        let map = L.map('map').setView([x_latitude, x_longitude], 15);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        let map = L.map('map').setView([x_latitude, x_longitude], 15).setMaxZoom(18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         const timeToTime = (isoDate) => {
             let date = new Date(isoDate);
@@ -51,7 +49,7 @@
         const show = () => {
             for (drive of drives) {
                 packetCoords = [];
-                driveText = `==ПОЕЗДКА==<br>№ ПОЕЗДКИ: ${drive.id}<br>ОТ: ${drive.point_a}<br>ДО: ${drive.point_b}<br>ИД ПОЛЬЗОВАТЕЛЯ: ${drive.user_id}<br>ИД АВТОМОБИЛЯ: ${drive.car_id}<br><br>`;
+                driveText = `==ПОЕЗДКА==<br>№ ПОЕЗДКИ: ${drive.id}<br>ОТ: ${drive.point_a}<br>ДО: ${drive.point_b}<br>ID ПОЛЬЗОВАТЕЛЯ: ${drive.user_id}<br>ID АВТОМОБИЛЯ: ${drive.car_id}<br><br>`;
                 for (packet of drive.list) {
                     packetText = driveText + `==ПАКЕТ==<br>${timeToTime(packet.created_at)}<br>СКОРОСТЬ: ${packet.speed} км/ч<br>№ ПАКЕТА: ${packet.id}<br>ВРЕМЯ: ${timeToTime(packet.timestamp * 1000)}<br>СМЕЩЕНИЕ: ${packet.time}<br>ШИРОТА: ${packet.latitude}<br>ДОЛГОТА: ${packet.longitude}`;
                     markers.push(L.marker([packet.latitude, packet.longitude]).addTo(map));

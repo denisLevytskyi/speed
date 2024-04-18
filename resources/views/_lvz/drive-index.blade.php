@@ -7,11 +7,11 @@
     </x-slot:header_info>
     <section class="list">
         <div class="container typicalContainer">
-            <a href="{{ route('app.drive.create') }}" class="listA">
-                Регистрация
-            </a>
-            @if($current)
-                <br>
+            @if(!$current)
+                <a href="{{ route('app.drive.create') }}" class="listA">
+                    Регистрация
+                </a>
+            @else
                 <a href="{{ route('app.drive.edit', $current->id) }}" class="listA">
                     Запись
                 </a>
