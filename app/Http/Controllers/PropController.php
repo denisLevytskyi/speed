@@ -47,9 +47,9 @@ class PropController extends Controller
             ['key' => 'drive_get_time', 'value' => $request->propEditGetTime],
             ['key' => 'drive_send_time', 'value' => $request->propEditSendTime],
             ['key' => 'drive_timeout', 'value' => $request->propEditTimeout],
-            ['key' => 'watch_latitude', 'value' => $request->propWatchLatitude],
-            ['key' => 'watch_longitude', 'value' => $request->propWatchLongitude],
-            ['key' => 'watch_time', 'value' => $request->propWatchTime],
+            ['key' => 'watch_latitude', 'value' => $request->propEditLatitude],
+            ['key' => 'watch_longitude', 'value' => $request->propEditLongitude],
+            ['key' => 'watch_time', 'value' => $request->propEditWatchTime],
         ];
         if (Prop::upsert($data, ['key'], ['value'])) {
             return back()->with(['status' => 'Обновлено']);
