@@ -38,9 +38,9 @@ class UpdatePropRequest extends FormRequest
             'propEditSendTime' => ['required', 'integer', 'min:1000', 'max:10000'],
             'propEditTimeout' => ['required', 'integer', 'min:3000', 'max:100000'],
             'propEditError' => ['required', 'integer', 'min:0', 'max:5000'],
-            'propWatchLatitude' => ['required', 'numeric', 'min:-500', 'max:500'],
-            'propWatchLongitude' => ['required', 'numeric', 'min:-500', 'max:500'],
-            'propWatchTime' => ['required', 'integer', 'min:3000', 'max:100000'],
+            'propEditLatitude' => ['required', 'numeric', 'min:-500', 'max:500'],
+            'propEditLongitude' => ['required', 'numeric', 'min:-500', 'max:500'],
+            'propEditWatctTime' => ['required', 'integer', 'min:3000', 'max:100000'],
         ];
     }
 }
