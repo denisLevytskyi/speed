@@ -62,7 +62,7 @@ input, textarea, select {
     font-weight: bold;
     font-size: 14px;
     padding: 5px;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 5px;
