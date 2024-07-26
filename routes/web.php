@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('_lvz.main');
 })->middleware(['auth', 'verified']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/_migration', function () {
     $a = Artisan::call('migrate:fresh');
@@ -37,4 +37,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__ . '/app.php';
+require __DIR__.'/app.php';
