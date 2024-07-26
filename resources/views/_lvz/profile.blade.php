@@ -10,7 +10,7 @@
     </x-slot:style>
     @method('patch')
     <x-l::form-input-error :messages="$errors->get('profileUpdateName')"/>
-    <x-l::form-input name="profileUpdateName" type="text" placeholder="Email" :value="old('profileUpdateName', $user->name)"/>
+    <x-l::form-input name="profileUpdateName" type="text" placeholder="Имя" :value="old('profileUpdateName', $user->name)"/>
     <x-l::form-input-error :messages="$errors->get('profileUpdateEmail')"/>
     <x-l::form-input name="profileUpdateEmail" type="text" placeholder="Email" :value="old('profileUpdateEmail', $user->email)"/>
     <x-l::form-btn>
