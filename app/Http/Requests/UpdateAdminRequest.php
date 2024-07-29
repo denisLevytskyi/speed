@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 class UpdateAdminRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class UpdateAdminRequest extends FormRequest
     {
         return [
             'adminEditName' => ['required', 'string', 'max:255'],
-            'adminEditEmail' => ['required', 'string', 'email', 'max:255'],
+            'adminEditEmail' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class, 'email')->ignore($this->admin)],
             'adminEditPassword' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ];
     }
