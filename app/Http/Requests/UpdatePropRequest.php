@@ -40,7 +40,7 @@ class UpdatePropRequest extends FormRequest
             'propEditError' => ['required', 'integer', 'min:0', 'max:5000'],
             'propEditLatitude' => ['required', 'numeric', 'min:-500', 'max:500'],
             'propEditLongitude' => ['required', 'numeric', 'min:-500', 'max:500'],
-            'propEditWatctTime' => ['required', 'integer', 'min:3000', 'max:100000'],
+            'propEditWatchTime' => ['required', 'integer', 'min:3000', 'max:100000'],
         ];
     }
 }
