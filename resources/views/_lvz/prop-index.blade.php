@@ -107,6 +107,16 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('propEditWatchTime')"/>
     <x-l::form-input name="propEditWatchTime" type="number" :value="old('propEditWatchTime', $prop->getProp('watch_time'))"/>
+    <p class="formFormP">
+        <strong>
+            ПРИЛОЖЕНИЕ
+        </strong>
+    </p>
+    <p class="formFormP">
+        Выключить строгий режим
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propEditAppMode')"/>
+    <x-l::form-input name="propEditAppMode" type="number" :value="old('propEditAppMode', $prop->getProp('app_mode'))"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
