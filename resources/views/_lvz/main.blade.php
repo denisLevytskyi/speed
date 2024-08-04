@@ -14,12 +14,17 @@
                 Доступные действия
             </h1>
             <div class="linksWrapper">
-                <a href="{{ route('app.car-manufacturer.index') }}" class="linksWrapperA">
-                    Автопроизводители
-                </a>
-                <a href="{{ route('app.car.index') }}" class="linksWrapperA">
-                    Автомобили
-                </a>
+                @php
+                    $prop = new \App\Models\Prop();
+                @endphp
+                @if((int) $prop->getProp('app_mode') or Auth::user()->isAdministrator())
+                    <a href="{{ route('app.car-manufacturer.index') }}" class="linksWrapperA">
+                        Автопроизводители
+                    </a>
+                    <a href="{{ route('app.car.index') }}" class="linksWrapperA">
+                        Автомобили
+                    </a>
+                @endif
                 <a href="{{ route('app.drive.index') }}" class="linksWrapperA">
                     Поездки
                 </a>

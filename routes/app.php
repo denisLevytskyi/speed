@@ -11,8 +11,8 @@ use App\Http\Controllers\WatchContrlorrel;
 Route::name('app.')->middleware(['auth', 'verified', 'is.guest'])->group(function() {
     Route::resource('admin', AdminController::class)->middleware('is.admin');
     Route::resource('prop', PropController::class)->middleware('is.admin');
-    Route::resource('car-manufacturer', CarManufacturerController::class);
-    Route::resource('car', CarController::class);
+    Route::resource('car-manufacturer', CarManufacturerController::class)->middleware('check.app.mode');
+    Route::resource('car', CarController::class)->middleware('check.app.mode');
     Route::resource('drive', DriveController::class);
     Route::get('drive/{drive}/check', [DriveController::class, 'show'])->name('drive.show.check');
     Route::get('watch', [WatchContrlorrel::class, 'index'])->middleware('is.watcher')->name('watch');

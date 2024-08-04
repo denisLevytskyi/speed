@@ -41,6 +41,7 @@ class UpdatePropRequest extends FormRequest
             'propEditLatitude' => ['required', 'numeric', 'min:-500', 'max:500'],
             'propEditLongitude' => ['required', 'numeric', 'min:-500', 'max:500'],
             'propEditWatchTime' => ['required', 'integer', 'min:3000', 'max:100000'],
+            'propEditAppMode' => ['required', 'integer', 'min:0', 'max:1'],
         ];
     }
 }

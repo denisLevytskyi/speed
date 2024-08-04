@@ -50,6 +50,7 @@ class PropController extends Controller
             ['key' => 'watch_latitude', 'value' => $request->propEditLatitude],
             ['key' => 'watch_longitude', 'value' => $request->propEditLongitude],
             ['key' => 'watch_time', 'value' => $request->propEditWatchTime],
+            ['key' => 'app_mode', 'value' => $request->propEditAppMode],
         ];
         if (Prop::upsert($data, ['key'], ['value'])) {
             return back()->with(['status' => 'Обновлено']);
