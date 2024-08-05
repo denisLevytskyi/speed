@@ -34,6 +34,7 @@ class PropSeeder extends Seeder
             ['key' => 'watch_longitude', 'value' => '25.349317509680986'],
             ['key' => 'watch_time', 'value' => '5000'],
             ['key' => 'app_mode', 'value' => '0'],
+            ['key' => 'app_register', 'value' => '0'],
         ];
         Prop::upsert($data, ['key'], ['value']);
     }

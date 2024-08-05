@@ -117,6 +117,11 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('propEditAppMode')"/>
     <x-l::form-input name="propEditAppMode" type="number" :value="old('propEditAppMode', $prop->getProp('app_mode'))"/>
+    <p class="formFormP">
+        Разрешить регистрацию
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propEditAppRegister')"/>
+    <x-l::form-input name="propEditAppRegister" type="number" :value="old('propEditAppRegister', $prop->getProp('app_register'))"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
