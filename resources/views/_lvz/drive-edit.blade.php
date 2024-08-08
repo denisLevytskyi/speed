@@ -50,7 +50,7 @@
                     clone[key] = data[key];
                 }
                 return clone;
-            };
+            }
 
             /* Seating from PHP */
             const x_min_speed = {{ $prop->getProp('drive_min_speed') ?: 0 }};
@@ -77,7 +77,7 @@
             /* => Prepare data and call to send request */
             deg2rad = (deg) => {
                 return deg * (Math.PI / 180);
-            };
+            }
 
             const calculateDistance = (lat1, lon1, lat2, lon2) => {
                 const R = 6371; // Radius of the earth in km
@@ -89,13 +89,12 @@
                 const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                 const distance = R * c; // Distance in km
                 return distance;
-            };
+            }
 
             const getSpeedData = () => {
                 if (!geo) {
                     return false;
                 }
-
                 fresh = {
                     timestamp: geo.timestamp,
                     time: 0,
@@ -103,14 +102,12 @@
                     latitude: geo.coords.latitude,
                     longitude: geo.coords.longitude
                 };
-
+                geo = false;
                 if (old) {
                     const distance = calculateDistance(old.latitude, old.longitude, fresh.latitude, fresh.longitude); // in kilometers
                     fresh.time = (fresh.timestamp - old.timestamp) / 1000; // time difference in seconds
                     fresh.speed = distance / (fresh.time / 3600); // speed in km/h
                 }
-
-                geo = false;
                 if (fresh.speed >= x_max_speed) {
                     old = false;
                     packetsReceived.value = 'Ошибка получения [+' + x_max_speed + ']. Повтор...';
@@ -129,7 +126,7 @@
                     packetsReceivedVal ++;
                     return getClone(fresh);
                 }
-            };
+            }
 
             const geoInterval = () => {
                 setInterval(() => {
@@ -138,7 +135,7 @@
                         list.push(data);
                     }
                 }, x_get_time);
-            };
+            }
             geoInterval();
 
             /* Send Request to server */
@@ -151,13 +148,13 @@
                 if (error >= x_error && x_error !== 0) {
                     location.reload();
                 }
-            };
+            }
 
             const getValueFromUrl = () => {
                 let url = window.location.href; // Получаем текущий URL страницы
                 let parts = url.split("/"); // Используем метод split() для разделения строки по "/"
                 return parts[parts.indexOf("drive") + 1]; // Извлекаем значение после "drive/"
-            };
+            }
 
             const getRequestText = (data) => {
                 data.timestamp = Math.round(data.timestamp / 1000);
@@ -165,7 +162,7 @@
                 data.speed = Math.round(data.speed * 100) / 100;
                 let drive_id = getValueFromUrl();
                 return `?drive_id=${drive_id}&timestamp=${data.timestamp}&time=${data.time}&speed=${data.speed}&latitude=${data.latitude}&longitude=${data.longitude}`;
-            };
+            }
 
             const sendRequest = (data) => {
                 const request = new XMLHttpRequest();
@@ -191,18 +188,18 @@
                     }
                     requestInterval();
                     delete(request);
-                };
+                }
                 request.ontimeout = () => {
                     packetsSent.value = 'Ошибка ожидания. Повтор...';
                     requestInterval();
                     delete(request);
-                };
+                }
                 request.onerror = () => {
                     packetsSent.value = 'Ошибка отправки. Повтор...';
                     requestInterval();
                     delete(request);
-                };
-            };
+                }
+            }
 
             const requestInterval = () => {
                 setTimeout(() => {
@@ -213,7 +210,7 @@
                         requestInterval();
                     }
                 }, x_send_time);
-            };
+            }
             requestInterval();
         </script>
     </x-slot:after>

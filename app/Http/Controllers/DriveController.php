@@ -29,7 +29,7 @@ class DriveController extends Controller
     {
         $drives = Drive::where('status', TRUE)->orderBy('id', 'desc')->paginate(10);
         $current = Drive::where('user_id', Auth::user()->id)->where('status', FALSE)->first();
-        return view('_lvz/drive-index', ['drives' => $drives, 'current' => $current]);
+        return view('_lvz.drive-index', ['drives' => $drives, 'current' => $current]);
     }
 
     /**
@@ -45,7 +45,7 @@ class DriveController extends Controller
         }
         $cars = Car::all();
         $points = Drive::select('point_b')->where('user_id', '=', Auth::user()->id)->orderByDesc('id')->get()->pluck('point_b')->unique();
-        return view('_lvz/drive-create', ['cars' => $cars, 'points' => $points]);
+        return view('_lvz.drive-create', ['cars' => $cars, 'points' => $points]);
     }
 
     /**
@@ -82,9 +82,9 @@ class DriveController extends Controller
     public function show(Request $request, Prop $prop, Drive $drive)
     {
         if (Route::currentRouteName() == 'app.drive.show.check') {
-            $view = '_lvz/drive-show-check';
+            $view = '_lvz.drive-show-check';
         } else {
-            $view = '_lvz/drive-show-map';
+            $view = '_lvz.drive-show-map';
         }
         if ($request->user()->cannot('view', $drive)) {
             return to_route('app.drive.index')->withErrors([
@@ -105,7 +105,7 @@ class DriveController extends Controller
                 'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
-        return view('_lvz/drive-edit', ['drive' => $drive, 'prop' => $prop]);
+        return view('_lvz.drive-edit', ['drive' => $drive, 'prop' => $prop]);
     }
 
     /**

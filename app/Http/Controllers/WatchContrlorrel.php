@@ -10,6 +10,6 @@ class WatchContrlorrel extends Controller
 {
     public function index(Prop $prop)
     {
-        return view('_lvz/watch-index', ['prop' => $prop]);
+        return view('_lvz.watch-index', ['prop' => $prop]);
     }
 }

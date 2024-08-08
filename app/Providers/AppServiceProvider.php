@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::defaultView('_lvz/layouts/paginator');
+        Paginator::defaultView('_lvz.layouts.paginator');
         Schema::defaultStringLength(191);
     }
 }
