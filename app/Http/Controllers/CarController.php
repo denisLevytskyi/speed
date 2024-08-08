@@ -14,7 +14,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::paginate(10);
-        return view('_lvz/car-index', ['cars' => $cars]);
+        return view('_lvz.car-index', ['cars' => $cars]);
     }
 
     /**
@@ -24,7 +24,7 @@ class CarController extends Controller
     public function create()
     {
         $manufacturers = CarManufacturer::all();
-        return view('_lvz/car-create', ['manufacturers' => $manufacturers]);
+        return view('_lvz.car-create', ['manufacturers' => $manufacturers]);
     }
 
     /**
@@ -45,7 +45,7 @@ class CarController extends Controller
             'number' => $request->carCreateNumber,
             'color' => $request->carCreateColor,
             'fuel' => $request->carCreateFuel,
-            'year' => $request->carCreateYear
+            'year' => $request->carCreateYear,
         ];
         if (Car::create($data)) {
             return to_route('app.car.index')->with(['status' => 'Запись успешно добавлена']);
@@ -75,7 +75,7 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         $manufacturers = CarManufacturer::all();
-        return view('_lvz/car-edit', ['car' => $car, 'manufacturers' => $manufacturers]);
+        return view('_lvz.car-edit', ['car' => $car, 'manufacturers' => $manufacturers]);
     }
 
     /**

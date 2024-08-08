@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        return view('_lvz/admin-index', ['users' => $users]);
+        return view('_lvz.admin-index', ['users' => $users]);
     }
 
     /**
@@ -28,7 +28,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('_lvz/admin-create');
+        return view('_lvz.admin-create');
     }
 
     /**
@@ -99,7 +99,7 @@ class AdminController extends Controller
             'user' => $admin->isUser(),
             'guest' => $admin->isGuest()
         ];
-        return view('_lvz/admin-edit', ['user' => $admin, 'roles' => $roles]);
+        return view('_lvz.admin-edit', ['user' => $admin, 'roles' => $roles]);
     }
 
     /**

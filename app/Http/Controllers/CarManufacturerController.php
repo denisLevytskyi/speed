@@ -17,7 +17,7 @@ class CarManufacturerController extends Controller
     public function index()
     {
         $car_manufacturers = CarManufacturer::paginate(10);
-        return view('_lvz/car-manufacturer-index', ['car_manufacturers' => $car_manufacturers]);
+        return view('_lvz.car-manufacturer-index', ['car_manufacturers' => $car_manufacturers]);
     }
 
     /**
@@ -26,7 +26,7 @@ class CarManufacturerController extends Controller
      */
     public function create()
     {
-        return view('_lvz/car-manufacturer-create');
+        return view('_lvz.car-manufacturer-create');
     }
 
     /**
@@ -71,7 +71,7 @@ class CarManufacturerController extends Controller
      */
     public function edit(CarManufacturer $car_manufacturer)
     {
-        return view('_lvz/car-manufacturer-edit', ['car_manufacturer' => $car_manufacturer]);
+        return view('_lvz.car-manufacturer-edit', ['car_manufacturer' => $car_manufacturer]);
     }
 
     /**
