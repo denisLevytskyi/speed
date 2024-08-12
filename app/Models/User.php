@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -92,5 +91,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isGuest () {
         return $this->roles()->where('role', '=', 'GUEST')->exists();
+    }
+
+    public function isPassStrongMod () {
+        return $this->isAdministrator() or (int) (new Prop())->getProp('app_mode');
     }
 }

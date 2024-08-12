@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Prop;
 use App\Models\User;
 use App\Models\UserRole;
 use App\Providers\RouteServiceProvider;
@@ -31,9 +30,9 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(RegisterRequest $request, Prop $prop): RedirectResponse
+    public function store(RegisterRequest $request): RedirectResponse
     {
-        if (!(int) $prop->getProp('app_register')) {
+        if (!(int) $this->prop->getProp('app_register')) {
             return back()->withInput()->withErrors(['status' => 'Регистрация недоступна']);
         }
 

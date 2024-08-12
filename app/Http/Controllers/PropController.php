@@ -12,9 +12,9 @@ class PropController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index(Prop $prop)
+    public function index()
     {
-        return view('_lvz.prop-index', ['prop' => $prop]);
+        return view('_lvz.prop-index', ['prop' => $this->prop]);
     }
 
     /**
@@ -54,7 +54,7 @@ class PropController extends Controller
             ['key' => 'app_mode', 'value' => $request->propAppMode],
             ['key' => 'app_register', 'value' => $request->propAppRegister],
         ];
-        if (Prop::upsert($data, ['key'], ['value'])) {
+        if ($this->prop->upsert($data, ['key'], ['value'])) {
             return back()->with(['status' => 'Обновлено']);
         } else {
             return back()->withErrors([
