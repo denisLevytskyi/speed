@@ -2,12 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Prop;
 use Closure;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PropController;
 
-class CheckAppMode
+class IsPassStrongMod
 {
     /**
      * Handle an incoming request.
@@ -18,8 +16,7 @@ class CheckAppMode
      */
     public function handle(Request $request, Closure $next)
     {
-        $prop = new Prop();
-        if ($request->user() and ((int) $prop->getProp('app_mode') or $request->user()->isAdministrator())) {
+        if ($request->user() and $request->user()->isPassStrongMod()) {
             return $next($request);
         } else {
             return redirect('/')->withErrors([

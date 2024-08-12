@@ -6,7 +6,6 @@ use App\Models\Car;
 use App\Models\Drive;
 use App\Http\Requests\StoreDriveRequest;
 use App\Http\Requests\UpdateDriveRequest;
-use App\Models\Prop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -79,7 +78,7 @@ class DriveController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Request $request, Prop $prop, Drive $drive)
+    public function show(Request $request, Drive $drive)
     {
         if (Route::currentRouteName() == 'app.drive.show.check') {
             $view = '_lvz.drive-show-check';
@@ -91,21 +90,21 @@ class DriveController extends Controller
                 'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
-        return view($view, ['drive' => $drive, 'prop' => $prop]);
+        return view($view, ['drive' => $drive, 'prop' => $this->prop]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      */
-    public function edit(Request $request, Prop $prop, Drive $drive)
+    public function edit(Request $request, Drive $drive)
     {
         if ($request->user()->cannot('update', $drive)) {
             return to_route('app.drive.index')->withErrors([
                 'status' => 'Вы не можете выполнить данное действие'
             ]);
         }
-        return view('_lvz.drive-edit', ['drive' => $drive, 'prop' => $prop]);
+        return view('_lvz.drive-edit', ['drive' => $drive, 'prop' => $this->prop]);
     }
 
     /**

@@ -14,10 +14,7 @@
                 Доступные действия
             </h1>
             <div class="linksWrapper">
-                @php
-                    $prop = new \App\Models\Prop();
-                @endphp
-                @if((int) $prop->getProp('app_mode') or Auth::user()->isAdministrator())
+                @if(Auth::user()->isPassStrongMod())
                     <a href="{{ route('app.car-manufacturer.index') }}" class="linksWrapperA">
                         Автопроизводители
                     </a>
