@@ -25,9 +25,9 @@ class StoreCarRequest extends FormRequest
     {
         return [
             'carCreateManufacturerId' => ['required', 'integer'],
-            'carCreateModel' => 'required',
-            'carCreateNumber' => ['required', 'min:4', 'max:10'],
-            'carCreateColor' => ['required', 'min:4', 'max:20'],
+            'carCreateModel' => ['required'],
+            'carCreateNumber' => ['required', 'min:3', 'max:10'],
+            'carCreateColor' => ['required', 'min:3', 'max:20'],
             'carCreateFuel' => 'required',
             'carCreateYear' => ['required', 'numeric', 'min:1900', 'max:2030']
         ];

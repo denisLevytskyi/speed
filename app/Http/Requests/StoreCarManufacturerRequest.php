@@ -24,7 +24,7 @@ class StoreCarManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            'carManufacturerCreateMark' => ['required', 'min:4', 'max:20']
+            'carManufacturerCreateMark' => ['required', 'min:3', 'max:20']
         ];
     }
 }

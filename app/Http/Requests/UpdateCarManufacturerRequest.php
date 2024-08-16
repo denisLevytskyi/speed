@@ -24,7 +24,7 @@ class UpdateCarManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            'carManufacturerEditMark' => ['required', 'min:4', 'max:20']
+            'carManufacturerEditMark' => ['required', 'min:3', 'max:20']
         ];
     }
 }
