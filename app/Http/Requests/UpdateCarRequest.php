@@ -25,9 +25,9 @@ class UpdateCarRequest extends FormRequest
     {
         return [
             'carEditManufacturerId' => ['required', 'integer'],
-            'carEditModel' => 'required',
-            'carEditNumber' => ['required', 'min:4', 'max:10'],
-            'carEditColor' => ['required', 'min:4', 'max:20'],
+            'carEditModel' => ['required'],
+            'carEditNumber' => ['required', 'min:3', 'max:10'],
+            'carEditColor' => ['required', 'min:3', 'max:20'],
             'carEditFuel' => 'required',
             'carEditYear' => ['required', 'numeric', 'min:1900', 'max:2030']
         ];

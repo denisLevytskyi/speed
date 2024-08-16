@@ -24,14 +24,14 @@ class UpdatePropRequest extends FormRequest
     public function rules()
     {
         return [
-            'propOrgName' => ['required', 'min:4', 'max:40'],
-            'propSubName' => ['required', 'min:4', 'max:40'],
-            'propSubAddress1' => ['required', 'min:4', 'max:40'],
-            'propSubAddress2' => ['required', 'min:4', 'max:40'],
-            'propId' => ['required', 'min:4', 'max:20'],
-            'propNn' => ['required', 'min:4', 'max:20'],
-            'propVersion' => ['required', 'min:4', 'max:20'],
-            'propAssembly' => ['required', 'min:4', 'max:20'],
+            'propOrgName' => ['required', 'min:3', 'max:40'],
+            'propSubName' => ['required', 'min:3', 'max:40'],
+            'propSubAddress1' => ['required', 'min:3', 'max:40'],
+            'propSubAddress2' => ['required', 'min:3', 'max:40'],
+            'propId' => ['required', 'min:3', 'max:20'],
+            'propNn' => ['required', 'min:3', 'max:20'],
+            'propVersion' => ['required', 'min:3', 'max:20'],
+            'propAssembly' => ['required', 'min:3', 'max:20'],
             'propMinSpeed' => ['required', 'integer', 'min:-1', 'max:300'],
             'propMaxSpeed' => ['required', 'integer', 'min:0', 'max:300'],
             'propGetTime' => ['required', 'integer', 'min:1000', 'max:10000'],

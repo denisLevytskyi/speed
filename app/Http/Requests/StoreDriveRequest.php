@@ -25,8 +25,8 @@ class StoreDriveRequest extends FormRequest
     {
         return [
             'driveCreateCarId' => ['required', 'integer'],
-            'driveCreatePointA' => ['required', 'min:4', 'max:10'],
-            'driveCreatePointB' => ['required', 'min:4', 'max:20'],
+            'driveCreatePointA' => ['required', 'min:3', 'max:20'],
+            'driveCreatePointB' => ['required', 'min:3', 'max:20'],
             'driveCreateOdometer' => ['required', 'integer', 'min:0', 'max:1000000']
         ];
     }
