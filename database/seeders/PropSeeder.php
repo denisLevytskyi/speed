@@ -35,6 +35,7 @@ class PropSeeder extends Seeder
             ['key' => 'watch_time', 'value' => '5000'],
             ['key' => 'app_mode', 'value' => '0'],
             ['key' => 'app_register', 'value' => '0'],
+            ['key' => 'app_paginator', 'value' => '10'],
             ['key' => 'sms_chance', 'value' => '0'],
             ['key' => 'sms_name', 'value' => '[SMS]'],
             ['key' => 'sms_subject', 'value' => 'Тема'],

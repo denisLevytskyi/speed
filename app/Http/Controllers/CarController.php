@@ -13,7 +13,7 @@ class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::paginate(10);
+        $cars = Car::paginate((int) $this->prop->getProp('app_paginator'));
         return view('_lvz.car-index', ['cars' => $cars]);
     }
 

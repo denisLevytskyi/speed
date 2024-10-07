@@ -53,6 +53,7 @@ class PropController extends Controller
             ['key' => 'watch_time', 'value' => $request->propWatchTime],
             ['key' => 'app_mode', 'value' => $request->propAppMode],
             ['key' => 'app_register', 'value' => $request->propAppRegister],
+            ['key' => 'app_paginator', 'value' => $request->propAppPaginator],
             ['key' => 'sms_chance', 'value' => $request->propSmsChance],
             ['key' => 'sms_name', 'value' => $request->propSmsName],
             ['key' => 'sms_subject', 'value' => $request->propSmsSubject],

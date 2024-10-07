@@ -43,6 +43,7 @@ class UpdatePropRequest extends FormRequest
             'propWatchTime' => ['required', 'integer', 'min:3000', 'max:100000'],
             'propAppMode' => ['required', 'integer', 'min:0', 'max:1'],
             'propAppRegister' => ['required', 'integer', 'min:0', 'max:1'],
+            'propAppPaginator' => ['required', 'integer', 'min:1', 'max:100'],
             'propSmsChance' => ['required', 'integer', 'min:0', 'max:100'],
             'propSmsName' => ['required', 'min:3', 'max:100'],
             'propSmsSubject' => ['required', 'min:3', 'max:100'],
