@@ -26,7 +26,7 @@ class DriveController extends Controller
      */
     public function index()
     {
-        $drives = Drive::where('status', TRUE)->orderBy('id', 'desc')->paginate(10);
+        $drives = Drive::where('status', TRUE)->orderBy('id', 'desc')->paginate((int) $this->prop->getProp('app_paginator'));
         $current = Drive::where('user_id', Auth::user()->id)->where('status', FALSE)->first();
         return view('_lvz.drive-index', ['drives' => $drives, 'current' => $current]);
     }

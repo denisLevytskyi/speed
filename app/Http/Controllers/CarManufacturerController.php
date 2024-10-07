@@ -16,7 +16,7 @@ class CarManufacturerController extends Controller
      */
     public function index()
     {
-        $car_manufacturers = CarManufacturer::paginate(10);
+        $car_manufacturers = CarManufacturer::paginate((int) $this->prop->getProp('app_paginator'));
         return view('_lvz.car-manufacturer-index', ['car_manufacturers' => $car_manufacturers]);
     }
 
