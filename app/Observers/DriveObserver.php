@@ -4,11 +4,16 @@ namespace App\Observers;
 
 use App\Models\Drive;
 use App\Models\DriveList;
+use App\Models\Prop;
+use App\Models\User;
 use App\Notifications\EndDrive;
+use App\Notifications\StartDrive;
 use Illuminate\Support\Facades\Auth;
 
 class DriveObserver
 {
+    public function __construct(public Prop $prop) {}
+
     /**
      * Handle the Drive "created" event.
      *
@@ -17,7 +22,12 @@ class DriveObserver
      */
     public function created(Drive $drive)
     {
-        //
+        if (rand(1, 100) > (int) $this->prop->getProp('sms_chance')) {
+            return;
+        }
+        if($user = User::where('name', '=', $this->prop->getProp('sms_name'))->first()) {
+            $user->notify(new StartDrive());
+        }
     }
 
     /**
