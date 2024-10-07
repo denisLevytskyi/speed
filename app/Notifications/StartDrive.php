@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Models\Drive;
+use App\Models\Prop;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EndDrive extends Notification
+class StartDrive extends Notification
 {
     use Queueable;
 
@@ -17,11 +17,11 @@ class EndDrive extends Notification
      *
      * @return void
      */
-    public function __construct(
-        public Drive $drive
-    )
+    public Prop $prop;
+
+    public function __construct()
     {
-        //
+        $this->prop = new Prop();
     }
 
     /**
@@ -43,20 +43,13 @@ class EndDrive extends Notification
      */
     public function toMail($notifiable)
     {
-        $id = $this->drive->id;
-        $time = $this->drive->created_at;
-        $point_a = $this->drive->point_a;
-        $point_b = $this->drive->point_b;
-        $url = route('app.drive.show', $this->drive->id);
-
+        $random = explode($this->prop->getProp('sms_line_separator'), $this->prop->getProp('sms_line_random'));
         return (new MailMessage)
-                    ->subject("Ваша поездка №$id закончена!")
-                    ->line("Поездка №: $id")
-                    ->line("Д/В: $time")
-                    ->line("От: $point_a")
-                    ->line("До: $point_b")
-                    ->action('Просмотреть отчет', $url)
-                    ->line('Спасибо за использование нашего сервиса!');
+            ->subject($this->prop->getProp('sms_subject'))
+            ->line($this->prop->getProp('sms_line_1'))
+            ->line($this->prop->getProp('sms_line_2'))
+            ->line($random[array_rand($random)])
+            ->line($this->prop->getProp('sms_line_3'));
     }
 
     /**

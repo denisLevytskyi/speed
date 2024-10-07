@@ -14,7 +14,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct (public Prop $prop) {}
+    public function __construct(public Prop $prop) {}
 
     public function haveChild(Model $model, $key, $value): bool {
         if (Auth::user()->isAdministrator()) {

@@ -35,6 +35,14 @@ class PropSeeder extends Seeder
             ['key' => 'watch_time', 'value' => '5000'],
             ['key' => 'app_mode', 'value' => '0'],
             ['key' => 'app_register', 'value' => '0'],
+            ['key' => 'sms_chance', 'value' => '0'],
+            ['key' => 'sms_name', 'value' => '[SMS]'],
+            ['key' => 'sms_subject', 'value' => 'Тема'],
+            ['key' => 'sms_line_1', 'value' => 'Линия 1'],
+            ['key' => 'sms_line_2', 'value' => 'Линия 2'],
+            ['key' => 'sms_line_3', 'value' => 'Линия 3'],
+            ['key' => 'sms_line_random', 'value' => 'Случайная фраза 1$Случайная фраза 2$Случайная фраза 3'],
+            ['key' => 'sms_line_separator', 'value' => '$'],
         ];
         Prop::upsert($data, ['key'], ['value']);
     }
