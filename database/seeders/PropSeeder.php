@@ -44,6 +44,7 @@ class PropSeeder extends Seeder
             ['key' => 'sms_line_3', 'value' => 'Линия 3'],
             ['key' => 'sms_line_random', 'value' => 'Случайная фраза 1$Случайная фраза 2$Случайная фраза 3'],
             ['key' => 'sms_line_separator', 'value' => '$'],
+            ['key' => 'sms_end', 'value' => '0'],
         ];
         Prop::upsert($data, ['key'], ['value']);
     }
