@@ -174,6 +174,11 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('propSmsSeparator')"/>
     <x-l::form-input name="propSmsSeparator" type="text" :value="old('propSmsSeparator', $prop->getProp('sms_line_separator'))"/>
+    <p class="formFormP">
+        Уведомлять при завершении
+    </p>
+    <x-l::form-input-error :messages="$errors->get('propSmsEnd')"/>
+    <x-l::form-input name="propSmsEnd" type="number" :value="old('propSmsEnd', $prop->getProp('sms_end'))"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>

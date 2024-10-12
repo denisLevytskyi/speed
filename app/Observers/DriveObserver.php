@@ -38,7 +38,9 @@ class DriveObserver
      */
     public function updated(Drive $drive)
     {
-        Auth::user()->notify(new EndDrive($drive));
+        if ((int) $this->prop->getProp('sms_end')) {
+            Auth::user()->notify(new EndDrive($drive));
+        }
     }
 
     /**

@@ -62,6 +62,7 @@ class PropController extends Controller
             ['key' => 'sms_line_3', 'value' => $request->propSmsLine3],
             ['key' => 'sms_line_random', 'value' => $request->propSmsRandom],
             ['key' => 'sms_line_separator', 'value' => $request->propSmsSeparator],
+            ['key' => 'sms_end', 'value' => $request->propSmsEnd],
         ];
         if ($this->prop->upsert($data, ['key'], ['value'])) {
             return back()->with(['status' => 'Обновлено']);

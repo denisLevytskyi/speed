@@ -52,6 +52,7 @@ class UpdatePropRequest extends FormRequest
             'propSmsLine3' => ['required', 'min:3', 'max:300'],
             'propSmsRandom' => ['required', 'min:3', 'max:100000'],
             'propSmsSeparator' => ['required', 'min:1', 'max:3'],
+            'propSmsEnd' => ['required', 'integer', 'min:0', 'max:1'],
         ];
     }
 }
