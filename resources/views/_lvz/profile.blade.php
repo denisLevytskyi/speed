@@ -43,11 +43,11 @@
                         Обновление пароля
                     </p>
                     <x-l::form-input-error :messages="$errors->get('profileEditPasswordOld')"/>
-                    <x-l::form-input name="profileEditPasswordOld" type="password" placeholder="Старый пароль"/>
+                    <x-l::form-input name="profileEditPasswordOld" type="password" placeholder="Старый пароль" :value="old('profileEditPasswordOld')"/>
                     <x-l::form-input-error :messages="$errors->get('profileEditPassword')"/>
-                    <x-l::form-input name="profileEditPassword" type="password" placeholder="Новый пароль"/>
-                    <x-l::form-input-error :messages="$errors->get('profileEditPasswordOld_confirmation')"/>
-                    <x-l::form-input name="profileEditPassword_confirmation" type="password" placeholder="Новый пароль"/>
+                    <x-l::form-input name="profileEditPassword" type="password" placeholder="Новый пароль" :value="old('profileEditPassword')"/>
+                    <x-l::form-input-error :messages="$errors->get('profileEditPassword_confirmation')"/>
+                    <x-l::form-input name="profileEditPassword_confirmation" type="password" placeholder="Новый пароль" :value="old('profileEditPassword_confirmation')"/>
                     <x-l::form-btn>
                         Обновить пароль
                     </x-l::form-btn>
@@ -71,7 +71,7 @@
                         Вы уверены, что хотите удалить свою учетную запись? После удаления вашей учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Пожалуйста, введите свой пароль, чтобы подтвердить, что вы хотите навсегда удалить свою учетную запись.
                     </p>
                     <x-l::form-input-error :messages="$errors->get('profileEditDeletePassword')"/>
-                    <x-l::form-input name="profileEditDeletePassword" type="password" placeholder="Пароль"/>
+                    <x-l::form-input name="profileEditDeletePassword" type="password" placeholder="Пароль" :value="old('profileEditDeletePassword')"/>
                     <x-l::form-btn style="background: #d32121; color: white">
                         Удалить профиль
                     </x-l::form-btn>

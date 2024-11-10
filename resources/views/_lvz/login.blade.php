@@ -8,7 +8,7 @@
     <x-l::form-input-error :messages="$errors->get('loginEmail')"/>
     <x-l::form-input name="loginEmail" type="text" placeholder="Email" :value="old('loginEmail')"/>
     <x-l::form-input-error :messages="$errors->get('loginPassword')"/>
-    <x-l::form-input name="loginPassword" type="password" placeholder="Пароль"/>
+    <x-l::form-input name="loginPassword" type="password" placeholder="Пароль" :value="old('loginPassword')"/>
     <x-l::form-input-check name="loginRemember">
         Запомнить меня
     </x-l::form-input-check>

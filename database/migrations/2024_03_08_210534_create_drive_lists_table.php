@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('time')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->decimal('distance', 6, 2)->nullable();
         });
     }
 

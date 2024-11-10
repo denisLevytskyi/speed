@@ -51,7 +51,7 @@
                 packetCoords = [];
                 driveText = `==ПОЕЗДКА==<br>№ ПОЕЗДКИ: ${drive.id}<br>ОТ: ${drive.point_a}<br>ДО: ${drive.point_b}<br>ID ПОЛЬЗОВАТЕЛЯ: ${drive.user_id}<br>ID АВТОМОБИЛЯ: ${drive.car_id}<br><br>`;
                 for (packet of drive.list) {
-                    packetText = driveText + `==ПАКЕТ==<br>${timeToTime(packet.created_at)}<br>СКОРОСТЬ: ${packet.speed} км/ч<br>№ ПАКЕТА: ${packet.id}<br>ВРЕМЯ: ${timeToTime(packet.timestamp * 1000)}<br>СМЕЩЕНИЕ: ${packet.time}<br>ШИРОТА: ${packet.latitude}<br>ДОЛГОТА: ${packet.longitude}`;
+                    packetText = driveText + `==ПАКЕТ==<br>${timeToTime(packet.created_at)}<br>СКОРОСТЬ: ${packet.speed} км/ч<br>№ ПАКЕТА: ${packet.id}<br>ВРЕМЯ: ${timeToTime(packet.timestamp * 1000)}<br>СМЕЩЕНИЕ: ${packet.time} сек<br>ШИРОТА: ${packet.latitude}<br>ДОЛГОТА: ${packet.longitude}<br>ПРОЙДЕНО: ${packet.distance} м`;
                     markers.push(L.marker([packet.latitude, packet.longitude]).addTo(map));
                     markers[markers.length - 1].bindPopup(packetText);
                     markers[markers.length - 1].setIcon(L.divIcon({className: 'icon'}));

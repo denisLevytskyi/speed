@@ -7,15 +7,23 @@ use App\Models\Drive;
 use App\Http\Requests\StoreDriveListRequest;
 use App\Http\Requests\UpdateDriveListRequest;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class DriveListController extends Controller
 {
-    public function terminal (Request $request) {
-        if (!$drive = Drive::find($request->drive_id) or $drive->status) {
+    public function terminal (StoreDriveListRequest $request) {
+        $data = [
+            'drive_id' => $request->driveEditDrive,
+            'timestamp' => $request->driveEditTimestamp,
+            'time' => $request->driveEditTime,
+            'speed' => $request->driveEditSpeed,
+            'latitude' => $request->driveEditLatitude,
+            'longitude' => $request->driveEditLongitude,
+            'distance' => $request->driveEditDistance,
+        ];
+        if (!$drive = Drive::find($data['drive_id']) or $drive->status) {
             /* STATUS ERROR */
             echo 1;
-        } elseif (DriveList::create($request->all())) {
+        } elseif (DriveList::create($data)) {
             /* OK */
             echo 2;
         } else {
