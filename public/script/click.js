@@ -4,9 +4,18 @@ headers.forEach(header => {
     header.addEventListener('click', () => {
         const parent = header.closest('.clickParent');
         const items = parent.querySelectorAll('.clickItem');
-
         items.forEach(item => {
             item.classList.toggle('clickItemActive');
+        });
+    });
+
+    header.addEventListener('dblclick', () => {
+        headers.forEach(header => {
+            const parent = header.closest('.clickParent');
+            const items = parent.querySelectorAll('.clickItem');
+            items.forEach(item => {
+                item.classList.toggle('clickItemActive');
+            });
         });
     });
 });

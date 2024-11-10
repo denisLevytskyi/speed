@@ -17,5 +17,6 @@ class DriveList extends Model
         'time',
         'latitude',
         'longitude',
+        'distance',
     ];
 }

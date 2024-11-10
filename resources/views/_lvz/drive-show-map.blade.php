@@ -39,10 +39,10 @@
                         Поездка -> ID: {{ $drive->id }}
                     </p>
                     <p class="infoWrapItemP clickItem">
-                        -> Начало: {{ $drive->created_at }}
+                        -> Начата: {{ $drive->created_at }}
                     </p>
                     <p class="infoWrapItemP clickItem">
-                        -> Конец: {{ $drive->updated_at }}
+                        -> Закончена: {{ $drive->updated_at }}
                     </p>
                     <p class="infoWrapItemP clickItem">
                         -> От: {{ $drive->point_a }}
@@ -52,6 +52,12 @@
                     </p>
                     <p class="infoWrapItemP clickItem">
                         -> ПО: {{ $drive->odometer }} км
+                    </p>
+                    <p class="infoWrapItemP clickItem">
+                        -> Всего пакетов: {{ $drive->list()->count() }}
+                    </p>
+                    <p class="infoWrapItemP clickItem">
+                        -> Пройдено: {{ number_format($drive->list()->sum('distance') / 1000, 3, ' км ', ' ')  }} м
                     </p>
                 </div>
                 <div class="infoWrapItem clickParent">
@@ -73,7 +79,10 @@
                         -> Владелец: [{{ $drive->car->user->id }}]  {{ $drive->car->user->name }}
                     </p>
                     <p class="infoWrapItemP clickItem">
-                        -> Модель: {{ $drive->car->manufacturer->mark }} {{ $drive->car->model }}
+                        -> Производитель: {{ $drive->car->manufacturer->mark }}
+                    </p>
+                    <p class="infoWrapItemP clickItem">
+                        -> Модель: {{ $drive->car->model }}
                     </p>
                     <p class="infoWrapItemP clickItem">
                         -> Гос номер: {{ $drive->car->number }}
@@ -114,7 +123,7 @@
         }
 
         for (packet of packets) {
-            const itemText = `${timeToTime(packet.created_at)}<br>СКОРОСТЬ: ${packet.speed} км/ч<br>№ ПАКЕТА: ${packet.id}<br>ВРЕМЯ: ${timeToTime(packet.timestamp * 1000)}<br>СМЕЩЕНИЕ: ${packet.time}<br>ШИРОТА: ${packet.latitude}<br>ДОЛГОТА: ${packet.longitude}`;
+            const itemText = `${timeToTime(packet.created_at)}<br>СКОРОСТЬ: ${packet.speed} км/ч<br>№ ПАКЕТА: ${packet.id}<br>ВРЕМЯ: ${timeToTime(packet.timestamp * 1000)}<br>СМЕЩЕНИЕ: ${packet.time} сек<br>ШИРОТА: ${packet.latitude}<br>ДОЛГОТА: ${packet.longitude}<br>ПРОЙДЕНО: ${packet.distance} м`;
             const marker = L.marker([packet.latitude, packet.longitude]).addTo(map);
             marker.bindPopup(itemText);
             marker.setIcon(L.divIcon({className: 'icon'}));

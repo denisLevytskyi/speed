@@ -123,6 +123,9 @@
                     <p class="mainItemP clickItem">
                         -> ДОЛГОТА: {{ $list->longitude }}
                     </p>
+                    <p class="mainItemP clickItem">
+                        -> ПРОЙДЕНО: {{ $list->distance }} м
+                    </p>
                 </div>
             @endforeach
         </section>
@@ -130,6 +133,9 @@
             <div class="footerSum">
                 <p class="footerSumP">
                     ВСЕГО ПАКЕТОВ: {{ $drive->list()->count() }}
+                </p>
+                <p class="footerSumP">
+                    ПРОЙДЕНО: {{ number_format($drive->list()->sum('distance') / 1000, 3, ' км ', ' ')  }} м
                 </p>
             </div>
             <div class="footerNum">
