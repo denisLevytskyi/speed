@@ -27,4 +27,17 @@ class Car extends Model
     public function user () {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function drive () {
+        return $this->hasMany(Drive::class, 'car_id', 'id');
+    }
+
+    public function odometer () {
+        $lastDrive =  $this->drive()->where('status', '=', TRUE)->orderBy('id', 'desc');
+        if ($lastDrive->exists()) {
+            return $lastDrive->first()->odometer + round($lastDrive->first()->list()->sum('distance') / 1000);
+        } else {
+            return 0;
+        }
+    }
 }

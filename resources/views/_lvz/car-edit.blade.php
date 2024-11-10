@@ -7,7 +7,7 @@
         Обновление автомобиля
     </x-slot:header_info>
     <pre class="productFormP">Запись №: {{ $car->id }}</pre>
-    <pre class="productFormP">Добавлена пользователем: {{ $car->user_id }}</pre>
+    <pre class="productFormP">Добавлена: [{{ $car->user_id }}] {{ $car->user->name }}</pre>
     <br>
     <p class="formFormP">
         Производитель
@@ -49,6 +49,10 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditYear')"/>
     <x-l::form-input name="carEditYear" type="number" step="1" :value="old('carEditYear', $car->year)"/>
+    <p class="formFormP">
+        Пробег
+    </p>
+    <x-l::form-input type="text" readonly :value="$car->odometer()"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>

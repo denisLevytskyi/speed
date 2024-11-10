@@ -7,7 +7,7 @@
         Запись поездки
     </x-slot:header_info>
     <pre class="productFormP">Запись №: {{ $drive->id }}</pre>
-    <pre class="productFormP">Добавлена пользователем: {{ $drive->user_id }}</pre>
+    <pre class="productFormP">Добавлена: [{{ $drive->user_id }}] {{ $drive->user->name }}</pre>
     <br>
     <p class="formFormP">
         Автомобиль

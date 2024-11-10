@@ -12,7 +12,7 @@
         Автомобиль
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreateCarId')"/>
-    <x-l::form-select name="driveCreateCarId">
+    <x-l::form-select id="car" name="driveCreateCarId">
         <option value=""></option>
         @foreach($cars as $car)
             <option value="{{ $car->id }}" {{ $car->id == old('driveCreateCarId') ? 'selected' : '' }}>{{ $car->manufacturer->mark . ' ' . $car->number }}</option>
@@ -46,7 +46,7 @@
         Показание одометра
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreateOdometer')"/>
-    <x-l::form-input name="driveCreateOdometer" type="number" :value="old('driveCreateOdometer')"/>
+    <x-l::form-input id="odometer" name="driveCreateOdometer" type="number" :value="old('driveCreateOdometer')"/>
     <x-l::form-btn>
         Добавить
     </x-l::form-btn>
@@ -76,6 +76,22 @@
             pointA3.addEventListener('input', () => {
                 if (pointA3.value === 'else') {
                     replace(pointA3, pointA4);
+                }
+            });
+
+            const car = document.getElementById('car');
+            const odometer = document.getElementById('odometer');
+            const odometerData = {
+                @foreach($cars as $car)
+                    {{ $car->id }}: {{ $car->odometer() }},
+                @endforeach
+            }
+
+            car.addEventListener('change', () => {
+                if (car.value in odometerData) {
+                    odometer.value = odometerData[car.value];
+                } else {
+                    odometer.value = null;
                 }
             });
         </script>
