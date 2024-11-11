@@ -14,4 +14,12 @@ class CarManufacturer extends Model
         'user_id',
         'mark'
     ];
+
+    public function user () {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function car () {
+        return $this->hasMany(Car::class, 'manufacturer_id', 'id');
+    }
 }

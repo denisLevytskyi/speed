@@ -77,6 +77,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
 
+    public function manufacturer () {
+        return $this->hasMany(CarManufacturer::class, 'user', 'id');
+    }
+
+    public function car () {
+        return $this->hasMany(Car::class, 'user', 'id');
+    }
+
+    public function drive () {
+        return $this->hasMany(Drive::class, 'user', 'id');
+    }
+
     public function isAdministrator () {
         return $this->roles()->where('role', '=', 'ADMIN')->exists();
     }
