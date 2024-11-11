@@ -15,7 +15,7 @@
     <x-l::form-select id="car" name="driveCreateCarId">
         <option></option>
         @foreach($cars as $car)
-            <option value="{{ $car->id }}" {{ $car->id == old('driveCreateCarId') ? 'selected' : '' }}>{{ $car->manufacturer->mark . ' ' . $car->number }}</option>
+            <option value="{{ $car->id }}" {{ $car->id == old('driveCreateCarId') ? 'selected' : '' }}>[{{ $car->id }}] {{ $car->manufacturer->mark }} - {{ $car->number }}</option>
         @endforeach
     </x-l::form-select>
     <p class="formFormP">
