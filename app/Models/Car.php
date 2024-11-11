@@ -20,12 +20,12 @@ class Car extends Model
         'year'
     ];
 
-    public function manufacturer () {
-        return $this->belongsTo(CarManufacturer::class, 'manufacturer_id', 'id');
-    }
-
     public function user () {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function manufacturer () {
+        return $this->belongsTo(CarManufacturer::class, 'manufacturer_id', 'id');
     }
 
     public function drive () {
