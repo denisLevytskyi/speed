@@ -25,6 +25,9 @@
                 <a href="{{ route('app.drive.index') }}" class="linksWrapperA">
                     Поездки
                 </a>
+                <a href="{{ route('app.search.index') }}" class="linksWrapperA">
+                    Поиск
+                </a>
                 @if(Auth::user()->isWatcher())
                     <a href="{{ route('app.watch') }}" class="linksWrapperA">
                         Наблюдение

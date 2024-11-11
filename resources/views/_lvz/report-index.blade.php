@@ -11,7 +11,7 @@
     <x-l::form-input-error :messages="$errors->get('reportStart')"/>
     <x-l::form-input name="reportStart" type="date" :value="old('reportStart')"/>
     <p class="formFormP">
-        Конеч
+        Конец
     </p>
     <x-l::form-input-error :messages="$errors->get('reportEnd')"/>
     <x-l::form-input name="reportEnd" type="date" :value="old('reportEnd')"/>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarManufacturerController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DriveController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WatchContrlorrel;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminController;
@@ -14,6 +15,8 @@ Route::name('app.')->middleware(['auth', 'verified', 'is.guest'])->group(functio
     Route::resource('car', CarController::class)->middleware('is.pass.strong.mod');
     Route::resource('drive', DriveController::class);
     Route::get('drive/{drive}/check', [DriveController::class, 'show'])->name('drive.show.check');
+    Route::get('search', [SearchController::class, 'index'])->name('search.index');
+    Route::post('search', [SearchController::class, 'store'])->name('search.store');
     Route::get('watch', [WatchContrlorrel::class, 'index'])->name('watch')->middleware('is.watcher');
     Route::get('report', [ReportController::class, 'index'])->name('report.index')->middleware('is.admin');
     Route::post('report', [ReportController::class, 'store'])->name('report.store')->middleware('is.admin');
