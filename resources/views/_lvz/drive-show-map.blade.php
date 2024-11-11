@@ -59,6 +59,9 @@
                     <p class="infoWrapItemP clickItem">
                         -> Пройдено: {{ number_format($drive->list()->sum('distance') / 1000, 3, ' км ', ' ')  }} м
                     </p>
+                    <p class="infoWrapItemP clickItem">
+                        -> Затрачено времени: {{ floor($drive->list()->sum('time') / 3600) }} ч {{ floor(($drive->list()->sum('time') % 3600) / 60) }} м
+                    </p>
                 </div>
                 <div class="infoWrapItem clickParent">
                     <p class="infoWrapItemP clickHeader">

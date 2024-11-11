@@ -31,6 +31,9 @@
                     </a>
                 @endif
                 @if(Auth::user()->isAdministrator())
+                    <a href="{{ route('app.report.index') }}" class="linksWrapperA">
+                        Отчет
+                    </a>
                     <a href="{{ route('app.admin.index') }}" class="linksWrapperA">
                         Пользователи
                     </a>

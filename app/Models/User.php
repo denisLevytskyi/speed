@@ -78,15 +78,19 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function manufacturer () {
-        return $this->hasMany(CarManufacturer::class, 'user', 'id');
+        return $this->hasMany(CarManufacturer::class, 'user_id', 'id');
     }
 
     public function car () {
-        return $this->hasMany(Car::class, 'user', 'id');
+        return $this->hasMany(Car::class, 'user_id', 'id');
     }
 
     public function drive () {
-        return $this->hasMany(Drive::class, 'user', 'id');
+        return $this->hasMany(Drive::class, 'user_id', 'id');
+    }
+
+    public function list () {
+        return $this->hasManyThrough(DriveList::class, Drive::class, 'user_id', 'drive_id', 'id', 'id');
     }
 
     public function isAdministrator () {

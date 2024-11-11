@@ -13,7 +13,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreateCarId')"/>
     <x-l::form-select id="car" name="driveCreateCarId">
-        <option value=""></option>
+        <option></option>
         @foreach($cars as $car)
             <option value="{{ $car->id }}" {{ $car->id == old('driveCreateCarId') ? 'selected' : '' }}>{{ $car->manufacturer->mark . ' ' . $car->number }}</option>
         @endforeach
@@ -23,7 +23,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreatePointA')"/>
     <x-l::form-select id="pointA1" name="driveCreatePointA">
-        <option value=""></option>
+        <option></option>
         <option value="else">Другое</option>
         @foreach($points as $point)
             <option value="{{ $point }}" {{ $point == old('driveCreatePointA') ? 'selected' : '' }}>{{ $point }}</option>
@@ -35,7 +35,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('driveCreatePointB')"/>
     <x-l::form-select id="pointA3" name="driveCreatePointB">
-        <option value=""></option>
+        <option></option>
         <option value="else">Другое</option>
         @foreach($points as $point)
             <option value="{{ $point }}" {{ $point == old('driveCreatePointB') ? 'selected' : '' }}>{{ $point }}</option>

@@ -137,16 +137,19 @@
                 <p class="footerSumP">
                     ПРОЙДЕНО: {{ number_format($drive->list()->sum('distance') / 1000, 3, ' км ', ' ')  }} м
                 </p>
+                <p class="footerSumP">
+                    ЗАТРАЧЕНО ВРЕМЕНИ: {{ floor($drive->list()->sum('time') / 3600) }} ч {{ floor(($drive->list()->sum('time') % 3600) / 60) }} м
+                </p>
             </div>
             <div class="footerNum">
                 <p class="footerNumP">
-                    Максимальная скорость: {{ $drive->list()->orderBy('speed', 'desc')->first()->speed }} км/ч
+                    Максимальная скорость: {{ $drive->list()->max('speed') }} км/ч
                 </p>
                 <p class="footerNumP">
-                    Первый пакет: {{ $drive->list()->first()->created_at }} [{{ $drive->list()->first()->id }}]
+                    Первый пакет: {{ $drive->list()->min('created_at')}} [{{ $drive->list()->min('id') }}]
                 </p>
                 <p class="footerNumP">
-                    Последний пакет: {{ $drive->list()->orderBy('id', 'desc')->first()->created_at }} [{{ $drive->list()->orderBy('id', 'desc')->first()->id }}]
+                    Последний пакет: {{ $drive->list()->max('created_at')}} [{{ $drive->list()->max('id') }}]
                 </p>
             </div>
             <div class="footerCode">
