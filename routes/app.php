@@ -16,7 +16,7 @@ Route::name('app.')->middleware(['auth', 'verified', 'is.guest'])->group(functio
     Route::get('drive/{drive}/check', [DriveController::class, 'show'])->name('drive.show.check');
     Route::get('watch', [WatchContrlorrel::class, 'index'])->name('watch')->middleware('is.watcher');
     Route::get('report', [ReportController::class, 'index'])->name('report.index')->middleware('is.admin');
-    Route::post('report-store', [ReportController::class, 'store'])->name('report.store')->middleware('is.admin');
+    Route::post('report', [ReportController::class, 'store'])->name('report.store')->middleware('is.admin');
     Route::resource('admin', AdminController::class)->middleware('is.admin');
     Route::resource('prop', PropController::class)->middleware('is.admin');
     Route::post('terminal-write', [DriveListController::class, 'terminal'])->name('terminal.write');

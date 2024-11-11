@@ -33,7 +33,7 @@ class ReportController extends Controller
         $data['packets'] = $model->list()->where('drive_lists.created_at', '>=', $data['start'])->where('drive_lists.created_at', '<=', $data['end'])->count();
         $data['distance'] = $model->list()->where('drive_lists.created_at', '>=', $data['start'])->where('drive_lists.created_at', '<=', $data['end'])->sum('distance');
         $data['time'] = $model->list()->where('drive_lists.created_at', '>=', $data['start'])->where('drive_lists.created_at', '<=', $data['end'])->sum('time');
-        $data['speed'] = $model->list()->where('drive_lists.created_at', '>=', $data['start'])->where('drive_lists.created_at', '<=', $data['end'])->sum('time');
+        $data['speed'] = $model->list()->where('drive_lists.created_at', '>=', $data['start'])->where('drive_lists.created_at', '<=', $data['end'])->max('speed');
         $data['list'] = $model->drive()->where('created_at', '>=', $data['start'])->where('created_at', '<=', $data['end'])->orderBy('id', 'desc')->paginate((int) $this->prop->getProp('app_paginator'));
         if ($data['drives']) {
             return view('_lvz.report-store', ['data' => $data]);
