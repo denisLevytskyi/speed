@@ -14,7 +14,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditManufacturerId')"/>
     <x-l::form-select name="carEditManufacturerId">
-        <option value=""></option>
+        <option></option>
         @foreach($manufacturers as $manufacturer)
             <option value="{{ $manufacturer->id }}" {{ $manufacturer->id == old('carEditManufacturerId', $car->manufacturer_id) ? 'selected' : '' }}>{{ $manufacturer->mark }}</option>
         @endforeach
@@ -39,7 +39,7 @@
     </p>
     <x-l::form-input-error :messages="$errors->get('carEditFuel')"/>
     <x-l::form-select name="carEditFuel">
-        <option value=""></option>
+        <option></option>
         <option value="Газ" {{ old('carEditFuel', $car->fuel) == 'Газ' ? 'selected' : '' }}>Газ</option>
         <option value="Бензин" {{ old('carEditFuel', $car->fuel) == 'Бензин' ? 'selected' : '' }}>Бензин</option>
         <option value="Дизель" {{ old('carEditFuel', $car->fuel) == 'Дизель' ? 'selected' : '' }}>Дизель</option>
@@ -50,9 +50,13 @@
     <x-l::form-input-error :messages="$errors->get('carEditYear')"/>
     <x-l::form-input name="carEditYear" type="number" step="1" :value="old('carEditYear', $car->year)"/>
     <p class="formFormP">
-        Пробег
+        Показание одометра
     </p>
     <x-l::form-input type="text" readonly :value="$car->odometer()"/>
+    <p class="formFormP">
+        Пробег
+    </p>
+    <x-l::form-input type="text" readonly :value="number_format($car->mileage() / 1000, 2, '.')"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>

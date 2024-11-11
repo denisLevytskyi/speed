@@ -32,6 +32,10 @@ class Car extends Model
         return $this->hasMany(Drive::class, 'car_id', 'id');
     }
 
+    public function list () {
+        return $this->hasManyThrough(DriveList::class, Drive::class, 'car_id', 'drive_id', 'id', 'id');
+    }
+
     public function odometer () {
         $lastDrive =  $this->drive()->where('status', '=', TRUE)->orderBy('id', 'desc');
         if ($lastDrive->exists()) {
@@ -39,5 +43,9 @@ class Car extends Model
         } else {
             return 0;
         }
+    }
+
+    public function mileage () {
+        return $this->list()->sum('distance');
     }
 }
