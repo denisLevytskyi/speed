@@ -24,8 +24,8 @@ class StoreSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'searchStart' => ['required', 'date'],
-            'searchEnd' => ['required', 'date'],
+            'searchStart' => ['nullable', 'date'],
+            'searchEnd' => ['nullable', 'date'],
             'searchUserId' => ['nullable', 'exists:users,id'],
             'searchCarId' => ['nullable', 'exists:cars,id'],
             'searchPointA' => ['nullable', 'min:3', 'max:20'],

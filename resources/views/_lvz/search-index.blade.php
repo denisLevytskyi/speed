@@ -9,12 +9,12 @@
         Начало
     </p>
     <x-l::form-input-error :messages="$errors->get('searchStart')"/>
-    <x-l::form-input name="searchStart" type="date" :value="old('searchStart')"/>
+    <x-l::form-input name="searchStart" type="datetime-local" :value="old('searchStart')"/>
     <p class="formFormP">
         Конец
     </p>
     <x-l::form-input-error :messages="$errors->get('searchEnd')"/>
-    <x-l::form-input name="searchEnd" type="date" :value="old('searchEnd')"/>
+    <x-l::form-input name="searchEnd" type="datetime-local" :value="old('searchEnd')"/>
     <p class="formFormP">
         Пользователь
     </p>

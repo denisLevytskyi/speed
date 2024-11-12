@@ -19,7 +19,13 @@ class SearchController extends Controller
     }
 
     public function store (StoreSearchRequest $request) {
-        $drives = Drive::where('created_at', '>=', $request->searchStart)->where('created_at', '<=', $request->searchEnd);
+        $drives = Drive::where('status', TRUE);
+        if ($request->searchStart) {
+            $drives = $drives->where('created_at', '>=', $request->searchStart);
+        }
+        if ($request->searchEnd) {
+            $drives = $drives->where('created_at', '<=', $request->searchEnd);
+        }
         if ($request->searchUserId) {
             $drives = $drives->where('user_id', '=', $request->searchUserId);
         }

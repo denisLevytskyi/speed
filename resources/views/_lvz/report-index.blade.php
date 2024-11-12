@@ -9,12 +9,12 @@
         Начало
     </p>
     <x-l::form-input-error :messages="$errors->get('reportStart')"/>
-    <x-l::form-input name="reportStart" type="date" :value="old('reportStart')"/>
+    <x-l::form-input name="reportStart" type="datetime-local" :value="old('reportStart')"/>
     <p class="formFormP">
         Конец
     </p>
     <x-l::form-input-error :messages="$errors->get('reportEnd')"/>
-    <x-l::form-input name="reportEnd" type="date" :value="old('reportEnd')"/>
+    <x-l::form-input name="reportEnd" type="datetime-local" :value="old('reportEnd')"/>
     <p class="formFormP">
         Пользователь
     </p>
