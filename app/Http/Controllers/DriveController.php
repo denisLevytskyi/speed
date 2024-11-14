@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 class DriveController extends Controller
 {
     public function terminal() {
-        $drives = Drive::where('status', FALSE)->get();
-        foreach ($drives as $drive) {
-            $drive->list = $drive->list()->get();
-        }
+        $drives = Drive::where('status', FALSE)->with('list')->get();
         return response()->json($drives);
     }
 
