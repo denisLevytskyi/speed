@@ -56,7 +56,6 @@
                             </a>
                         </div>
                     @endforeach
-                    {{ $data['list']->onEachSide(1)->links() }}
                 </div>
             </div>
         </section>
