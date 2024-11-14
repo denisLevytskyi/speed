@@ -29,14 +29,14 @@ class ReportController extends Controller
             'start' => $request->reportStart,
             'end' => $request->reportEnd,
         ];
-        $drive = $model->drive()->where('drives.created_at', '>=', $data['start'])->where('drives.created_at', '<=', $data['end'])->where('drives.status', TRUE);
+        $drives = $model->drive()->where('drives.created_at', '>=', $data['start'])->where('drives.created_at', '<=', $data['end'])->where('drives.status', TRUE);
         $list = $model->list()->where('drives.created_at', '>=', $data['start'])->where('drives.created_at', '<=', $data['end'])->where('drives.status', TRUE);
-        $data['drives'] = $drive->count();
+        $data['drives'] = $drives->count();
         $data['packets'] = $list->count();
         $data['distance'] = $list->sum('distance');
         $data['time'] = $list->sum('time');
         $data['speed'] = $list->max('speed');
-        $data['list'] = $drive->paginate((int) $this->prop->getProp('app_paginator'));
+        $data['list'] = $drives->orderBy('id', 'desc')->get();
         if ($data['drives']) {
             return view('_lvz.report-store', ['data' => $data]);
         } else {
