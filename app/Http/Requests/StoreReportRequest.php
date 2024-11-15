@@ -24,10 +24,12 @@ class StoreReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'reportStart' => ['required', 'date'],
-            'reportEnd' => ['required', 'date'],
+            'reportStart' => ['nullable', 'date'],
+            'reportEnd' => ['nullable', 'date'],
             'reportUserId' => ['nullable', 'exists:users,id'],
             'reportCarId' => ['nullable', 'exists:cars,id'],
+            'reportPointA' => ['nullable', 'min:3', 'max:20'],
+            'reportPointB' => ['nullable', 'min:3', 'max:20'],
         ];
     }
 }

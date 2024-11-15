@@ -35,24 +35,30 @@
             <option value="{{ $car->id }}" {{ $car->id == old('reportCarId') ? 'selected' : '' }}>[{{ $car->id }}] {{ $car->manufacturer->mark }} - {{ $car->number }}</option>
         @endforeach
     </x-l::form-select>
+    <p class="formFormP">
+        От
+    </p>
+    <x-l::form-input-error :messages="$errors->get('reportPointA')"/>
+    <x-l::form-select name="reportPointA">
+        <option></option>
+        @foreach($aPoints as $point)
+            <option value="{{ $point }}" {{ $point == old('reportPointA') ? 'selected' : '' }}>{{ $point }}</option>
+        @endforeach
+    </x-l::form-select>
+    <p class="formFormP">
+        До
+    </p>
+    <x-l::form-input-error :messages="$errors->get('reportPointB')"/>
+    <x-l::form-select name="reportPointB">
+        <option></option>
+        @foreach($bPoints as $point)
+            <option value="{{ $point }}" {{ $point == old('reportPointB') ? 'selected' : '' }}>{{ $point }}</option>
+        @endforeach
+    </x-l::form-select>
     <x-l::form-btn>
         Получить
     </x-l::form-btn>
     <a href="/" class="formFormA">
         Назад
     </a>
-    <x-slot:after>
-        <script>
-            const user = document.getElementById('user');
-            const car = document.getElementById('car');
-
-            user.addEventListener('change', () => {
-               car.value = null;
-            });
-
-            car.addEventListener('change', () => {
-                user.value = null;
-            });
-        </script>
-    </x-slot:after>
 </x-l-layout::form>
