@@ -52,11 +52,11 @@
     <p class="formFormP">
         Показание одометра
     </p>
-    <x-l::form-input type="text" readonly :value="$car->odometer()"/>
+    <x-l::form-input type="number" readonly :value="$car->odometer()"/>
     <p class="formFormP">
         Пробег
     </p>
-    <x-l::form-input type="text" readonly :value="number_format($car->mileage() / 1000, 2, '.')"/>
+    <x-l::form-input type="text" readonly :value="number_format($car->mileage() / 1000, 3, ' км ', ' ') . ' м'"/>
     <x-l::form-btn>
         Обновить
     </x-l::form-btn>
