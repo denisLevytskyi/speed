@@ -6,8 +6,8 @@
     <x-slot:header_info>
         Запись поездки
     </x-slot:header_info>
-    <pre class="productFormP">Запись №: {{ $drive->id }}</pre>
-    <pre class="productFormP">Добавлена: [{{ $drive->user_id }}] {{ $drive->user->name }}</pre>
+    <pre class="formFormP">Запись №: {{ $drive->id }}</pre>
+    <pre class="formFormP">Добавлена: [{{ $drive->user_id }}] {{ $drive->user->name }}</pre>
     <br>
     <p class="formFormP">
         Автомобиль
@@ -31,13 +31,13 @@
         <section class="form">
             <div class="container">
                 <form action="" class="formForm">
-                    <pre class="productFormP">Пакетов получено, шт</pre>
+                    <pre class="formFormP">Пакетов получено, шт</pre>
                     <x-l::form-input type="text" id="packetsReceived" readonly value="0"/>
-                    <pre class="productFormP">Пакетов отправлено, шт</pre>
+                    <pre class="formFormP">Пакетов отправлено, шт</pre>
                     <x-l::form-input type="text" id="packetsSent" readonly value="0"/>
-                    <pre class="productFormP">Скорость, км/ч</pre>
+                    <pre class="formFormP">Скорость, км/ч</pre>
                     <x-l::form-input type="text" id="speedometer" readonly value="0"/>
-                    <pre class="productFormP">Дистанция, м</pre>
+                    <pre class="formFormP">Дистанция, м</pre>
                     <x-l::form-input type="text" id="distance" readonly value="0"/>
                 </form>
             </div>
