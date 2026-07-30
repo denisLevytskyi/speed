@@ -6,8 +6,8 @@
     <x-slot:header_info>
         Обновление производителя
     </x-slot:header_info>
-    <pre class="productFormP">Запись №: {{ $car_manufacturer->id }}</pre>
-    <pre class="productFormP">Добавлена: [{{ $car_manufacturer->user_id }}] {{ $car_manufacturer->user->name }}</pre>
+    <pre class="formFormP">Запись №: {{ $car_manufacturer->id }}</pre>
+    <pre class="formFormP">Добавлена: [{{ $car_manufacturer->user_id }}] {{ $car_manufacturer->user->name }}</pre>
     <br>
     <p class="formFormP">
         Производитель
