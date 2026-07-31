@@ -21,13 +21,13 @@
 }
 
 .paginatorActive {
-    color: gray;
+    color: grey;
     font-weight: 700;
     cursor: default;
     text-decoration: underline;
 }
 
 .paginatorDisabled {
-    color: gray;
+    color: grey;
     cursor: default;
 }
